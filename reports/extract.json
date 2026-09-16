@@ -1,0 +1,385 @@
+{
+  "source": {
+    "url": "https://chungdoi.com/vi/mau-thiep/minimalism-do-dam/demo?open=1",
+    "product": "https://chungdoi.com/templates/minimalism-dark-red",
+    "theme": "minimalism-dark-red",
+    "htmlDataTheme": "halloween",
+    "lang": "vi",
+    "extractedAt": "2026-09-16",
+    "method": "Chrome DevTools getComputedStyle on pageId 2",
+    "viewport": { "innerWidth": 929, "innerHeight": 861, "clientWidth": 914, "scrollHeight": 6251 },
+    "htmlBackground": "oklch(0.21 0.006 56.043)",
+    "bodyBackground": "rgba(0,0,0,0)",
+    "notes": [
+      "Do not use site :root --font-primary Pattaya / --font-secondary Roboto for invitation type.",
+      "No live countdown; 03 numerals are ceremony/banquet day.",
+      "Do not ship Google Maps API key from iframe src.",
+      "Download theme/photo/audio locally; do not hotlink."
+    ]
+  },
+  "content": {
+    "coupleShort": "Hoàng Long & Bảo Ngọc",
+    "groomFull": "Đặng Hoàng Long",
+    "brideFull": "Vũ Bảo Ngọc",
+    "groomRole": "Trưởng Nam",
+    "brideRole": "Út Nữ",
+    "groomParents": ["Đặng Văn Thắng", "Bùi Thị Mai"],
+    "brideParents": ["Vũ Đức Trung", "Ngô Thị Hạnh"],
+    "groomDistrict": "Quận 1, TP. Hồ Chí Minh",
+    "brideDistrict": "Quận 3, TP. Hồ Chí Minh",
+    "ceremony": {
+      "weekday": "Thứ Bảy",
+      "date": "03/01/2026",
+      "lunar": "15/11 Ất Tỵ",
+      "time": "09:00",
+      "place": "Tư gia"
+    },
+    "banquet": {
+      "time": "18:00",
+      "guestArrival": "17:00",
+      "open": "18:00",
+      "end": "20:30",
+      "venueName": "Trung Tâm Hội Nghị White Palace",
+      "venueAddress": "194 Hoàng Văn Thụ, Phường 9, Quận Phú Nhuận, TP. Hồ Chí Minh"
+    }
+  },
+  "palette": {
+    "burgundy": { "rgb": "rgb(81, 20, 25)", "hex": "#511419", "usage": "Primary ink, paper fill, names, CTAs, calendar heart, borders" },
+    "burgundyDeep": { "rgb": "rgb(89, 3, 16)", "hex": "#590310", "usage": "SAVE THE DATE overline" },
+    "burgundyMid": { "rgb": "rgb(140, 58, 63)", "hex": "#8C3A3F", "usage": "Dress-code swatch 2" },
+    "cream": { "rgb": "rgb(236, 228, 216)", "hex": "#ECE4D8", "usage": "Type on burgundy paper, dress-code swatch 4" },
+    "creamMuted": { "rgb": "rgba(236, 228, 216, 0.7)", "hex": "#ECE4D8B3", "usage": "Secondary labels on paper" },
+    "pageCream": { "rgb": "rgb(255, 247, 235)", "hex": "#FFF7EB", "usage": "Invitation root background" },
+    "gold": { "rgb": "rgb(181, 139, 47)", "hex": "#B58B2F", "usage": "Sparkles" },
+    "goldDress": { "rgb": "rgb(201, 162, 74)", "hex": "#C9A24A", "usage": "Dress-code swatch 3" },
+    "ctaOnBurgundy": { "rgb": "rgb(222, 217, 215)", "hex": "#DED9D7", "usage": "Submit button text" },
+    "ampHero": { "rgb": "rgba(81, 20, 25, 0.15)", "hex": "#51141926", "usage": "Hero ampersand" },
+    "venueAddr": { "rgb": "rgba(81, 20, 25, 0.8)", "hex": "#511419CC", "usage": "Venue address on cream" },
+    "borderMd": { "rgb": "rgba(81, 20, 25, 0.133)", "hex": "#51141922", "usage": "md invitation border" },
+    "htmlBg": { "oklch": "oklch(0.21 0.006 56.043)", "usage": "Document chrome behind invitation" }
+  },
+  "typography": {
+    "doNotUse": ["Pattaya", "Roboto"],
+    "faces": [
+      { "family": "Cormorant Garamond", "role": "SAVE THE DATE overline" },
+      { "family": "Viaoda Libre", "role": "Hero names + ceremony H3 names" },
+      { "family": "The Nautigal", "role": "Hero ampersand + calendar month" },
+      { "family": "Ms Madi", "role": "Inner paper ampersand" },
+      { "family": "Times New Roman", "role": "Section H2, day numerals, submit, dress/guestbook/gift titles, timeline hours" },
+      { "family": "Baskerville", "role": "Body, families, báo tin, tư gia, Đón khách, venue, calendar weekdays" },
+      { "family": "Uchen", "role": "Trưởng Nam / Út Nữ" }
+    ],
+    "styles": {
+      "saveTheDate": {
+        "text": "SAVE THE DATE",
+        "family": "Cormorant Garamond",
+        "size": "18px",
+        "weight": "600",
+        "color": "rgb(89, 3, 16)",
+        "letterSpacing": "2.88px",
+        "lineHeight": "27px",
+        "transform": "uppercase",
+        "classes": "text-[15px] uppercase md:text-[18px]",
+        "box": { "x": 373, "y": 61, "w": 168, "h": 27 }
+      },
+      "heroName": {
+        "family": "Viaoda Libre",
+        "size": "58px",
+        "weight": "300",
+        "color": "rgb(81, 20, 25)",
+        "lineHeight": "58px",
+        "classes": "text-[clamp(38px,11vw,46px)] leading-none md:text-[58px]",
+        "hoangLong": { "y": 764, "w": 278, "h": 58 },
+        "baoNgoc": { "y": 844, "w": 221, "h": 58 }
+      },
+      "heroAmp": {
+        "text": "&",
+        "family": "The Nautigal",
+        "size": "120px",
+        "weight": "300",
+        "color": "rgba(81, 20, 25, 0.15)",
+        "box": { "x": 417, "y": 755, "w": 81, "h": 120 }
+      },
+      "innerAmp": {
+        "family": "Ms Madi",
+        "size": "35px",
+        "weight": "300",
+        "color": "rgb(236, 228, 216)"
+      },
+      "h2OnPaper": {
+        "family": "Times New Roman",
+        "computedSize": "20px",
+        "h2Size": "16px",
+        "weight": "700",
+        "color": "rgb(236, 228, 216)",
+        "letterSpacing": "0.48px",
+        "lineHeight": "30px",
+        "transform": "uppercase",
+        "classes": "uppercase text-center relative z-10",
+        "leCuoi": { "y": 994, "spanY": 998, "spanW": 213, "spanH": 22 },
+        "tiecCuoi": { "y": 2512, "spanY": 2516, "spanW": 236, "spanH": 22 }
+      },
+      "h3Names": {
+        "family": "Viaoda Libre",
+        "size": "46px",
+        "weight": "400",
+        "color": "rgb(236, 228, 216)",
+        "classes": "w-[80%] min-h-[80px] … md:leading-[60px]",
+        "dangHoangLong": { "y": 1221, "w": 416, "h": 80 }
+      },
+      "baoTin": {
+        "family": "Baskerville",
+        "size": "13px",
+        "weight": "300",
+        "color": "rgb(236, 228, 216)",
+        "lineHeight": "19.5px",
+        "box": { "y": 1158, "w": 231, "h": 39 }
+      },
+      "ongBa": {
+        "family": "Baskerville",
+        "size": "12px",
+        "weight": "300",
+        "color": "rgba(236, 228, 216, 0.7)",
+        "lineHeight": "18px",
+        "box": { "y": 1050, "x": 355, "w": 37, "h": 14 }
+      },
+      "familyNames": {
+        "family": "Baskerville",
+        "size": "14px",
+        "weight": "600",
+        "color": "rgb(236, 228, 216)"
+      },
+      "district": {
+        "family": "Baskerville",
+        "size": "10px",
+        "weight": "300",
+        "color": "rgba(236, 228, 216, 0.7)",
+        "lineHeight": "12.5px",
+        "box": { "y": 1121, "h": 13 }
+      },
+      "role": {
+        "family": "Uchen",
+        "size": "10px",
+        "weight": "300",
+        "color": "rgba(236, 228, 216, 0.7)",
+        "letterSpacing": "1.4px",
+        "lineHeight": "15px",
+        "truongNam": { "y": 1315, "x": 414, "w": 86, "h": 18 },
+        "utNu": { "y": 1510, "x": 436, "w": 42, "h": 18 }
+      },
+      "tuGia": {
+        "family": "Baskerville",
+        "size": "18px",
+        "weight": "400",
+        "color": "rgba(236, 228, 216, 0.7)",
+        "lineHeight": "27px",
+        "box": { "y": 1554, "w": 310, "h": 47 },
+        "note": "Earlier dump had 16px/300 burgundy; live opened page is 18px/400 cream 0.7"
+      },
+      "dayNumeral": {
+        "family": "Times New Roman",
+        "size": "46px",
+        "weight": "300",
+        "color": "rgb(236, 228, 216)",
+        "lineHeight": "46px",
+        "classes": "text-[40px] md:text-[46px] leading-none",
+        "ceremony": { "y": 1674, "x": 375, "w": 46, "h": 46 },
+        "banquet": { "y": 2676, "x": 379, "w": 46, "h": 46 }
+      },
+      "donKhachKhaiTiec": {
+        "family": "Baskerville",
+        "size": "12px",
+        "weight": "300",
+        "color": "rgba(236, 228, 216, 0.7)",
+        "letterSpacing": "0.6px",
+        "lineHeight": "16px",
+        "y": 2812
+      },
+      "banquetLead": {
+        "text": "Tiệc cưới sẽ diễn ra vào lúc:",
+        "family": "Baskerville",
+        "size": "26px",
+        "weight": "400",
+        "color": "rgb(236, 228, 216)",
+        "lineHeight": "39px",
+        "box": { "y": 2566, "x": 255, "w": 404, "h": 39 }
+      },
+      "time1800": {
+        "family": "Baskerville",
+        "size": "15px",
+        "weight": "300",
+        "color": "rgba(236, 228, 216, 0.7)",
+        "lineHeight": "22.5px",
+        "box": { "y": 2625, "x": 488, "w": 34, "h": 23 }
+      },
+      "venueTitle": {
+        "text": "Tiệc cưới sẽ tổ chức tại",
+        "family": "Times New Roman",
+        "size": "16px",
+        "weight": "700",
+        "color": "rgb(81, 20, 25)",
+        "letterSpacing": "0.48px",
+        "lineHeight": "24px",
+        "box": { "y": 3401, "x": 341, "w": 232, "h": 17 }
+      },
+      "venueAddr": {
+        "family": "Baskerville",
+        "size": "14px",
+        "weight": "300",
+        "color": "rgba(81, 20, 25, 0.8)",
+        "lineHeight": "22.75px",
+        "box": { "y": 3433, "x": 249, "w": 416, "h": 38 }
+      },
+      "sectionTitleBurgundy": {
+        "family": "Times New Roman",
+        "size": "20px",
+        "weight": "700",
+        "color": "rgb(81, 20, 25)",
+        "letterSpacing": "0.6px",
+        "lineHeight": "30px",
+        "soLuuBut": { "y": 4759, "x": 393, "w": 128, "h": 22 },
+        "hopQuaMung": { "y": 5719, "x": 373, "w": 169, "h": 30 },
+        "dressCode": { "y": 4012, "x": 390, "w": 133, "h": 22 }
+      },
+      "calendarMonth": {
+        "text": "Tháng 1 / 2026",
+        "family": "The Nautigal",
+        "size": "25px",
+        "weight": "400",
+        "color": "rgb(81, 20, 25)",
+        "letterSpacing": "0.625px",
+        "box": { "y": 2899, "w": 330, "h": 59 }
+      },
+      "calendarWeekday": {
+        "family": "Baskerville",
+        "size": "11px",
+        "weight": "500",
+        "color": "rgb(81, 20, 25)"
+      },
+      "timelineHour": {
+        "family": "Times New Roman",
+        "size": "17px",
+        "weight": "300",
+        "color": "rgb(236, 228, 216)",
+        "letterSpacing": "0.425px",
+        "lineHeight": "23.375px",
+        "classes": "pt-0.5 text-right text-[16px] md:text-[17px] tabular-nums tracking-wide leading-snug"
+      },
+      "submit": {
+        "text": "GỬI LỜI CHÚC",
+        "family": "Times New Roman",
+        "size": "14px",
+        "weight": "600",
+        "color": "rgb(222, 217, 215)",
+        "box": { "y": 4993, "w": 149, "h": 36 }
+      }
+    }
+  },
+  "geometry": {
+    "invitationRoot": {
+      "classes": "relative w-full max-w-[480px] md:max-w-[900px] md:mx-auto overflow-hidden md:border md:border-[#51141922] isolate",
+      "size": { "w": 900, "h": 6250 },
+      "background": "rgb(255, 247, 235)",
+      "border": "1px solid rgba(81, 20, 25, 0.133)"
+    },
+    "heroWrap": { "padding": "60px 36px 56px", "approx": { "w": 898, "h": 957 } },
+    "ceremonyPaper": {
+      "parent": { "classes": "rounded-[13px] px-5 pb-10 pt-9", "w": 560, "h": 848, "x": 177, "y": 958, "shadow": "4px 4px 10px rgba(0,0,0,0.25)", "radius": "13px" },
+      "fill": { "classes": "absolute inset-0 rounded-[13px]", "bg": "rgb(81, 20, 25)" },
+      "paperImg": { "src": "/images/themes/minimalism-dark-red/paper.webp", "opacity": 0.4, "mixBlendMode": "multiply", "objectFit": "cover", "radius": "13px" },
+      "content": { "classes": "relative z-10 flex flex-col items-center gap-6", "w": 520, "h": 772 }
+    },
+    "banquetPaper": {
+      "y": 2476,
+      "w": 560,
+      "h": 875,
+      "radius": "10px",
+      "paperOpacity": 0.4,
+      "mixBlendMode": "multiply",
+      "contentApprox": { "w": 520, "h": 803, "y": 2512 }
+    },
+    "timelinePaper": { "y": 4198, "w": 560, "h": 405, "radius": "10px" },
+    "calendar": {
+      "classes": "w-full max-w-[280px] md:max-w-[310px] mx-auto rounded-lg overflow-hidden !max-w-none !w-[280px] md:!w-[330px] mx-auto",
+      "w": 330,
+      "h": 283,
+      "x": 292,
+      "y": 2899,
+      "radius": "8px"
+    },
+    "heart": { "viewBox": "0 0 24 22", "w": "30px", "h": "28px", "fill": "rgb(81, 20, 25)", "day": 3 },
+    "map": { "y": 3488, "x": 177, "w": 560, "h": 380, "radius": "15px" },
+    "submit": { "padding": "8px 24px", "radius": "9999px", "bg": "rgb(81, 20, 25)", "w": 149, "h": 36, "y": 4993 },
+    "inputs": {
+      "name": { "placeholder": "Nhập tên*", "w": 348, "h": 46 },
+      "message": { "placeholder": "Nhập lời chúc*", "w": 348, "h": 110 },
+      "caret": "rgb(81, 20, 25)",
+      "outline": "rgb(81, 20, 25) none 3px",
+      "border": "1px solid rgb(81, 20, 25)"
+    },
+    "giftCta": { "label": "Mở hộp mừng cưới", "approx": { "w": 250, "h": 357, "y": 5765 } },
+    "giftEnvelopes": [
+      { "src": "/images/envelope/minimalism_darkred.webp", "y": 5812, "w": 204, "h": 252, "z": 1 },
+      { "src": "/images/envelope/minimalism_darkred.webp", "y": 5780, "w": 235, "h": 304, "z": 2 }
+    ],
+    "musicFab": {
+      "classes": "fixed bottom-14 right-4 z-40",
+      "button": "w-12 h-12 rounded-full shadow-lg",
+      "box": { "w": 48, "h": 54 },
+      "ariaPlaying": "Tạm dừng nhạc",
+      "shadow": "0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1)"
+    },
+    "dressSwatches": {
+      "size": "48x48",
+      "colors": ["rgb(81, 20, 25)", "rgb(140, 58, 63)", "rgb(201, 162, 74)", "rgb(236, 228, 216)"]
+    }
+  },
+  "motion": {
+    "micro": "0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+    "submitTransition": "transform 0.15s cubic-bezier(0.4, 0, 0.2, 1)",
+    "submitHover": "scale(1.05)",
+    "fabHover": "scale(1.10)",
+    "fabAnimationPlaying": "animate-spin-cd",
+    "envelopeHint": "2s ease-in-out infinite ienvHintPulse",
+    "keyframesCount": 46,
+    "rule": "Animate transform and opacity only. Respect prefers-reduced-motion."
+  },
+  "audio": {
+    "src": "https://cdn.chungdoi.com/music/em-dong-y-i-do.mp3",
+    "loop": true,
+    "playingOnOpen": true
+  },
+  "assets": {
+    "imgCount": 39,
+    "fontFaceCount": 97,
+    "themeDir": "/images/themes/minimalism-dark-red/",
+    "theme": [
+      { "file": "castle-background.webp", "opacity": 0.1, "objectFit": "contain", "position": "absolute" },
+      { "file": "envelope-background.webp", "w": 420, "h": 484, "z": 10, "objectFit": "fill" },
+      { "file": "envelope-cover.webp", "w": 420, "h": 277, "z": 30, "objectFit": "fill" },
+      { "file": "flower2-decoration.webp", "objectFit": "contain" },
+      { "file": "paper.webp", "opacity": 0.4, "mixBlendMode": "multiply", "objectFit": "cover" },
+      { "file": "camera.webp", "w": 40, "h": 40 },
+      { "file": "cake.webp", "w": 40, "h": 40 },
+      { "file": "cook.webp", "w": 40, "h": 40 },
+      { "file": "papernote-background.webp", "opacity": 0.95, "w": 650, "h": 592 }
+    ],
+    "envelope": "/images/envelope/minimalism_darkred.webp",
+    "music": "https://cdn.chungdoi.com/music/em-dong-y-i-do.mp3"
+  },
+  "sectionsY": {
+    "saveTheDate": 61,
+    "heroNames": 764,
+    "ceremonyPaper": 958,
+    "ceremonyDay": 1674,
+    "banquetPaper": 2476,
+    "calendar": 2899,
+    "venue": 3401,
+    "map": 3488,
+    "dressCode": 4012,
+    "timeline": 4198,
+    "guestbook": 4759,
+    "submit": 4993,
+    "gift": 5719
+  }
+}
