@@ -1750,6 +1750,8 @@ a {
   width: 28px;
   height: 28px;
   fill: #f3e8de;
+  animation: overlayHeartFloat 2.4s ease-in-out infinite;
+  will-change: transform;
 }
 
 .overlay-shadow {
@@ -2359,10 +2361,10 @@ a {
 @keyframes seal-pulse {
   0%,
   100% {
-    transform: translate(-50%, -50%) scale(1);
+    transform: translate(-50%, -50%) translateY(0) scale(1);
   }
   50% {
-    transform: translate(-50%, -50%) scale(1.06);
+    transform: translate(-50%, -50%) translateY(-8px) scale(1.14);
   }
 }
 
@@ -2743,6 +2745,11 @@ body.is-opening .hearts .heart {
   animation: overlayHeartLift 1.6s ease forwards;
 }
 
+body.is-opening .hearts .heart svg,
+body.is-opening .seal svg {
+  animation: none;
+}
+
 body.is-opening .open-btn {
   animation: none;
   opacity: 0;
@@ -2751,7 +2758,6 @@ body.is-opening .open-btn {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .seal,
   .sparkle,
   .music-btn.is-playing .music-disc {
     animation: none !important;

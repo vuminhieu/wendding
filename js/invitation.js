@@ -442,7 +442,8 @@
       .replace(/"/g, "&quot;");
   }
 
-  spawnHearts(document.getElementById("hearts"), 22, "float");
+  spawnHearts(document.getElementById("hearts"), 18, "float");
+  spawnHearts(document.getElementById("hearts"), 26);
   spawnHearts(document.getElementById("page-falls"), 28);
   buildCalendar("calendar-grid-groom", 24);
   buildCalendar("calendar-grid-bride", 25);
