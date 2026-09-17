@@ -18,12 +18,14 @@
 
   const overlay = document.getElementById("overlay");
   const openBtn = document.getElementById("open-invite");
+  const invitation = document.getElementById("invitation");
   const musicBtn = document.getElementById("music-btn");
   const bgm = document.getElementById("bgm");
   let bgmIndex = 0;
   const toast = document.getElementById("toast");
   const params = new URLSearchParams(location.search);
   const alreadyOpen = params.get("open") === "1";
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
   const MAX_GUEST_NAME = 80;
 
   function sanitizeGuestName(raw) {
@@ -172,12 +174,20 @@
     musicBtn.setAttribute("aria-label", "Phát nhạc");
   }
 
+  function revealInvitation() {
+    invitation?.removeAttribute("aria-hidden");
+    invitation?.removeAttribute("inert");
+  }
+
   function openInvite() {
     if (!document.body.classList.contains("await-open") || document.body.classList.contains("is-opening")) return;
     document.body.classList.remove("await-open");
     document.body.classList.add("is-opening");
+    openBtn.disabled = true;
+    openBtn.setAttribute("aria-busy", "true");
     overlay.classList.add("is-leaving");
     playMusic();
+
     let closed = false;
     const done = () => {
       if (closed) return;
@@ -186,12 +196,22 @@
       overlay.classList.remove("is-leaving");
       document.body.classList.remove("is-opening");
       document.body.classList.add("is-opened");
+      revealInvitation();
+      openBtn.disabled = false;
+      openBtn.removeAttribute("aria-busy");
+      invitation?.focus({ preventScroll: true });
       startAlbumAutoplay(900);
     };
-    overlay.addEventListener("transitionend", (e) => {
-      if (e.target === overlay) done();
-    });
-    setTimeout(done, 1700);
+
+    if (reduceMotion.matches) {
+      done();
+    } else {
+      overlay.addEventListener("transitionend", (e) => {
+        if (e.target === overlay) done();
+      }, { once: true });
+      setTimeout(done, 1700);
+    }
+
     const url = new URL(location.href);
     url.searchParams.set("open", "1");
     history.replaceState({}, "", url);
@@ -557,6 +577,7 @@
   if (alreadyOpen) {
     document.body.classList.remove("await-open", "is-opening");
     document.body.classList.add("is-opened");
+    revealInvitation();
     overlay.hidden = true;
     playMusic();
     startAlbumAutoplay();

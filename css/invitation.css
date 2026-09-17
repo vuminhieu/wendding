@@ -3010,3 +3010,300 @@ body.is-opening .open-btn {
     transition-duration: 0.01ms;
   }
 }
+
+/* ── Page Vignette ── */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 50%, rgba(81, 20, 25, 0.06) 100%);
+}
+
+/* ── Decorative Section Dividers ── */
+.section-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 8px 0 12px;
+  max-width: 560px;
+  margin: 0 auto;
+}
+
+.section-divider-line {
+  flex: 1;
+  max-width: 120px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold-sparkle), transparent);
+  opacity: 0.4;
+}
+
+.section-divider-orn {
+  color: var(--gold-sparkle);
+  font-size: 12px;
+  opacity: 0.6;
+  line-height: 1;
+}
+
+/* ── Paper Board Depth Enhancement ── */
+.paper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  background: linear-gradient(160deg, rgba(255, 247, 235, 0.06) 0%, transparent 40%, rgba(81, 20, 25, 0.12) 100%);
+  pointer-events: none;
+}
+
+/* Gold corner ornaments on paper boards */
+.paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(181, 139, 47, 0.15);
+}
+
+/* ── Corner Flourish Accents ── */
+.paper-wrap::before,
+.paper-wrap::after {
+  content: "";
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  pointer-events: none;
+  z-index: 5;
+  opacity: 0.3;
+}
+
+.paper-wrap::before {
+  top: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-top: 2px solid var(--gold-sparkle);
+  border-left: 2px solid var(--gold-sparkle);
+  border-radius: 4px 0 0 0;
+}
+
+.paper-wrap::after {
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-bottom: 2px solid var(--gold-sparkle);
+  border-right: 2px solid var(--gold-sparkle);
+  border-radius: 0 0 4px 0;
+}
+
+/* ── Staggered Content Reveal After Opening ── */
+#invitation {
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 0.6s var(--ease-micro);
+}
+
+#invitation .header {
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease-micro), transform 0.8s var(--ease-micro);
+}
+
+#invitation .paper-wrap {
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease-micro) 0.15s, transform 0.8s var(--ease-micro) 0.15s;
+}
+
+#invitation .section-bleed {
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease-micro) 0.2s, transform 0.8s var(--ease-micro) 0.2s;
+}
+
+#invitation .guestbook-wrap {
+  opacity: 1;
+  will-change: opacity, transform;
+  transform: translateY(0);
+  transition: opacity 0.8s var(--ease-micro) 0.3s, transform 0.8s var(--ease-micro) 0.3s;
+}
+
+#invitation .footer {
+  opacity: 1;
+  will-change: opacity;
+  transition: opacity 0.8s var(--ease-micro) 0.45s;
+}
+
+body.await-open #invitation,
+body.is-opening #invitation {
+  opacity: 0;
+}
+
+body.await-open #invitation .header,
+body.is-opening #invitation .header {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+body.await-open #invitation .paper-wrap,
+body.is-opening #invitation .paper-wrap,
+body.await-open #invitation .section-bleed,
+body.is-opening #invitation .section-bleed {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+body.await-open #invitation .guestbook-wrap,
+body.is-opening #invitation .guestbook-wrap {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+body.await-open #invitation .footer,
+body.is-opening #invitation .footer {
+  opacity: 0;
+}
+
+body.is-opened #invitation {
+  opacity: 1;
+}
+
+/* ── Enhanced Countdown Cells ── */
+.countdown-cells {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.countdown-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 56px;
+  padding: 10px 8px;
+  background: rgba(81, 20, 25, 0.04);
+  border: 1px solid rgba(81, 20, 25, 0.08);
+  border-radius: 8px;
+  transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.countdown-cell:hover {
+  border-color: rgba(181, 139, 47, 0.3);
+  background: rgba(181, 139, 47, 0.06);
+}
+
+.countdown-num {
+  font-family: var(--font-title);
+  font-size: 28px;
+  font-weight: 300;
+  line-height: 1;
+  color: var(--ink-burgundy);
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+.countdown-unit {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 300;
+  color: var(--ink-burgundy-80);
+  margin-top: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* ── Music FAB Glow ── */
+.music-btn {
+  position: relative;
+  transition: transform 0.2s var(--ease-micro), box-shadow 0.3s ease;
+}
+
+.music-btn::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(181, 139, 47, 0.2) 0%, transparent 70%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.music-btn:hover::after {
+  opacity: 1;
+}
+
+.music-btn:active {
+  transform: scale(0.92) !important;
+}
+
+/* ── Improved Button Pressed States ── */
+.open-btn:active,
+.rsvp:active,
+.submit:active,
+.gift-cta:active,
+.add-cal:active {
+  transform: scale(0.96) !important;
+  filter: brightness(0.92);
+}
+
+.rsvp {
+  transition: transform 0.15s var(--ease-micro), box-shadow 0.15s ease;
+}
+
+.submit {
+  transition: transform 0.15s var(--ease-micro), opacity 0.15s ease;
+}
+
+.gift-cta {
+  transition: transform 0.2s var(--ease-micro), box-shadow 0.2s ease;
+}
+
+/* ── Decorative Border Frame on Paper Content ── */
+.paper-content {
+  position: relative;
+}
+
+/* ── Reduced Motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .section-divider-line {
+    transition: none;
+  }
+
+  #invitation,
+  #invitation .header,
+  #invitation .paper-wrap,
+  #invitation .section-bleed,
+  #invitation .guestbook-wrap,
+  #invitation .footer {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .countdown-cell:hover {
+    background: transparent;
+    border-color: rgba(81, 20, 25, 0.08);
+  }
+
+  .music-btn::after {
+    display: none;
+  }
+
+  .paper::before,
+  .paper::after {
+    display: none;
+  }
+
+  .paper-wrap::before,
+  .paper-wrap::after {
+    display: none;
+  }
+}
