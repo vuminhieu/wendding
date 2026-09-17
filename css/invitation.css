@@ -298,17 +298,31 @@ a {
   color: var(--ink-amp-hero);
 }
 
-.hero-guest {
+.hero-invite-block {
   position: relative;
   z-index: 10;
-  margin: 12px 0 0;
-  padding: 0 24px;
+  margin-top: 20px;
+  padding: 0 28px;
   text-align: center;
+}
+
+.hero-invite {
+  margin: 0 0 2px;
   font-family: var(--font-overlay);
   font-size: 16px;
-  font-weight: 400;
-  color: var(--ink-burgundy);
+  font-weight: 300;
+  letter-spacing: 0.04em;
   line-height: 1.4;
+  color: rgba(81, 20, 25, 0.72);
+}
+
+.hero-guest {
+  margin: 0;
+  font-family: var(--font-script-overlay);
+  font-size: clamp(18px, 6vw, 26px);
+  font-weight: 400;
+  line-height: 1.32;
+  color: var(--ink-burgundy);
   word-break: break-word;
 }
 
@@ -1784,12 +1798,13 @@ a {
 }
 
 .overlay-guest {
-  margin: 8px 0 24px;
-  font-family: var(--font-overlay);
-  font-size: 16px;
+  margin: 4px 0 22px;
+  padding: 0 8px;
+  font-family: var(--font-script-overlay);
+  font-size: 20px;
   font-weight: 400;
-  color: rgba(81, 20, 25, 0.88);
-  line-height: 1.35;
+  color: var(--ink-burgundy);
+  line-height: 1.32;
   word-break: break-word;
 }
 
@@ -2244,6 +2259,18 @@ a {
     font-size: 96px;
   }
 
+  .hero-invite-block {
+    margin-top: 24px;
+  }
+
+  .hero-invite {
+    font-size: 18px;
+  }
+
+  .hero-guest {
+    font-size: 30px;
+  }
+
   .paper-wrap,
   .paper-wrap--banquet,
   .paper-wrap--timeline {
@@ -2432,6 +2459,10 @@ a {
 
   .overlay-amp {
     font-size: 34px;
+  }
+
+  .overlay-guest {
+    font-size: 26px;
   }
 
   .overlay-flower {

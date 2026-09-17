@@ -44,12 +44,13 @@
   function applyGuestName(name) {
     if (!name) return;
     const overlayGuest = document.getElementById("overlay-guest");
+    const heroInvite = document.getElementById("hero-invite");
     const heroGuest = document.getElementById("hero-guest");
     const wishName = document.getElementById("wish-name");
     overlayGuest.textContent = name;
     overlayGuest.hidden = false;
-    heroGuest.textContent = "Thân mời " + name;
-    heroGuest.hidden = false;
+    heroGuest.textContent = name;
+    heroInvite.hidden = false;
     if (wishName && !wishName.value) wishName.value = name;
   }
 
