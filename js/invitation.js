@@ -15,10 +15,10 @@
     ["Tuấn Anh", "Mừng hạnh phúc hai bạn! Chúc gia đình nhỏ luôn đầy ắp tiếng cười."],
     ["Khánh Vy", "Chúc cô dâu chú rể luôn giữ được nụ cười này mãi mãi nhé!"],
     ["Gia Bảo", "Nhìn thiệp là thấy tình yêu rồi. Chúc hai bạn trăm năm viên mãn!"],
-    ["Phương Anh", "Chúc đám cưới thật trọn vẹn và ấm áp. Hạnh phúc nhé hai bạn!"],
+    ["Hải Yến", "Chúc đám cưới thật trọn vẹn và ấm áp. Hạnh phúc nhé hai bạn!"],
     ["Minh Đức", "Cuối cùng cũng tới ngày trọng đại, chúc mừng cặp đôi xứng lứa vừa đôi!"],
     ["Thu Hà", "Chúc hai bạn mãi mãi yêu thương và bên nhau trọn đời!"],
-    ["Hoàng Long", "Mẫu thiệp đẹp quá, tông đỏ đô sang trọng ghê. Chúc mừng hai bạn!"],
+    ["Thuỳ Linh", "Mẫu thiệp đẹp quá, tông đỏ đô sang trọng ghê. Chúc mừng hai bạn!"],
     ["Ngọc Trâm", "Chúc hai bạn trăm năm hạnh phúc, sớm sinh quý tử nhé!"]
   ];
 
@@ -98,7 +98,7 @@
 
   function buildCalendar() {
     const grid = document.getElementById("calendar-grid");
-    const firstWeekday = new Date(2026, 0, 1).getDay();
+    const firstWeekday = new Date(2026, 9, 1).getDay();
     const offset = firstWeekday === 0 ? 6 : firstWeekday - 1;
     for (let i = 0; i < offset; i++) {
       grid.appendChild(document.createElement("div")).className = "cal-cell";
@@ -106,8 +106,8 @@
     for (let d = 1; d <= 31; d++) {
       const cell = document.createElement("div");
       cell.className = "cal-cell";
-      if (d === 3) {
-        cell.innerHTML = '<div class="cal-heart" aria-label="3"><svg viewBox="0 0 24 22" fill="#511419"><path d="M12 21C12 21 1.5 13.5 1.5 7.5C1.5 4.46 3.96 2 7 2C8.76 2 10.35 2.81 11.4 4.09L12 4.8L12.6 4.09C13.65 2.81 15.24 2 17 2C20.04 2 22.5 4.46 22.5 7.5C22.5 13.5 12 21 12 21Z"></path></svg><span>3</span></div>';
+      if (d === 24) {
+        cell.innerHTML = '<div class="cal-heart" aria-label="24"><svg viewBox="0 0 24 22" fill="#511419"><path d="M12 21C12 21 1.5 13.5 1.5 7.5C1.5 4.46 3.96 2 7 2C8.76 2 10.35 2.81 11.4 4.09L12 4.8L12.6 4.09C13.65 2.81 15.24 2 17 2C20.04 2 22.5 4.46 22.5 7.5C22.5 13.5 12 21 12 21Z"></path></svg><span>24</span></div>';
       } else {
         cell.innerHTML = `<span>${d}</span>`;
       }
