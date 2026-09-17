@@ -53,11 +53,13 @@
     const heroInvite = document.getElementById("hero-invite");
     const heroGuest = document.getElementById("hero-guest");
     const wishName = document.getElementById("wish-name");
+    const rsvpName = document.getElementById("rsvp-name");
     overlayGuest.textContent = name;
     overlayGuest.hidden = false;
     heroGuest.textContent = name;
     heroInvite.hidden = false;
     if (wishName && !wishName.value) wishName.value = name;
+    if (rsvpName && !rsvpName.value) rsvpName.value = name;
   }
 
   applyGuestName(sanitizeGuestName(params.get("to")));
