@@ -109,13 +109,22 @@ def main() -> int:
         if size > TARGETS["hero"]:
             failed = True
 
-    for i in range(1, 8):
-        name = f"{i:02d}.jpg"
+    album_ids = sorted(
+        p.stem
+        for p in SRC.glob("[0-9][0-9].jpg")
+        if p.stem.isdigit()
+    )
+    if not album_ids:
+        print("no numbered album JPEGs in originals", file=sys.stderr)
+        return 1
+
+    for stem in album_ids:
+        name = f"{stem}.jpg"
         src = require(SRC / name)
-        card_dest = CARD_DIR / f"{i:02d}.webp"
-        full_dest = FULL_DIR / f"{i:02d}.webp"
+        card_dest = CARD_DIR / f"{stem}.webp"
+        full_dest = FULL_DIR / f"{stem}.webp"
         if fresh(card_dest, src, TARGETS["card"]) and fresh(full_dest, src, TARGETS["full"]):
-            print(f"SKIP {i:02d} card {kb(card_dest.stat().st_size)} full {kb(full_dest.stat().st_size)}")
+            print(f"SKIP {stem} card {kb(card_dest.stat().st_size)} full {kb(full_dest.stat().st_size)}")
             continue
         im = load_rgb(src)
         if fresh(card_dest, src, TARGETS["card"]):

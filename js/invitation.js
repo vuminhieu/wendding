@@ -1,5 +1,5 @@
 (() => {
-  const PHOTO_IDS = ["01", "02", "03", "04", "05", "06", "07"];
+  const PHOTO_IDS = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14"];
   const PHOTOS_CARD = PHOTO_IDS.map((id) => `assets/photos/card/${id}.webp`);
   const PHOTOS_FULL = PHOTO_IDS.map((id) => `assets/photos/full/${id}.webp`);
 
