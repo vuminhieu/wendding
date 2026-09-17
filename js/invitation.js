@@ -1,5 +1,5 @@
 (() => {
-  const PHOTO_IDS = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14"];
+  const PHOTO_IDS = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15"];
   const PHOTOS_CARD = PHOTO_IDS.map((id) => `assets/photos/card/${id}.webp`);
   const PHOTOS_FULL = PHOTO_IDS.map((id) => `assets/photos/full/${id}.webp`);
 
@@ -516,19 +516,24 @@
 
   async function renderWishes() {
     const root = document.getElementById("wishes");
+    root.innerHTML = `<p class="wish-status">Đang tải lời chúc…</p>`;
     try {
       const list = await loadWishes();
+      if (!list.length) {
+        root.innerHTML = `<p class="wish-status">Chưa có lời chúc. Hãy là người đầu tiên.</p>`;
+        return;
+      }
       root.innerHTML = list.map((w) => `
       <article class="wish">
         <div class="wish-head">
           <span class="wish-name">${escapeHtml(w.name)}</span>
-          <span class="wish-time">${escapeHtml(w.time)}</span>
+          <time class="wish-time">${escapeHtml(w.time)}</time>
         </div>
         <p>${escapeHtml(w.text)}</p>
       </article>
     `).join("");
     } catch {
-      root.innerHTML = "";
+      root.innerHTML = `<p class="wish-status wish-status--error">Không tải được sổ lưu bút.</p>`;
     }
   }
 

@@ -1352,6 +1352,7 @@ a {
 .papernote {
   pointer-events: none;
   position: absolute;
+  z-index: 1;
   left: 50%;
   top: -15px;
   width: 120%;
@@ -1364,7 +1365,7 @@ a {
 
 .guestbook {
   position: relative;
-  z-index: 10;
+  z-index: 2;
   padding: 74px 24px 32px;
   color: var(--ink-burgundy);
   font-family: var(--font-title);
@@ -1374,10 +1375,15 @@ a {
   transform: translateY(16px);
 }
 
-.gb-form {
+.gb-stack {
   margin: 24px auto 0;
   width: 100%;
   max-width: 280px;
+}
+
+.gb-form {
+  margin: 0;
+  width: 100%;
 }
 
 .field {
@@ -1449,44 +1455,114 @@ a {
   transform: none;
 }
 
-.wishes {
-  margin: 110px auto 0;
+.wishes-panel {
+  box-sizing: border-box;
+  position: relative;
+  z-index: 2;
+  margin: 132px auto 0;
   width: 100%;
-  max-width: 100%;
-  max-height: 500px;
+  max-width: 29.625rem;
+  padding: 12px 6px 12px 12px;
+  border: 1px solid color-mix(in srgb, #511419 18%, transparent);
+  border-radius: 14px;
+  background: #f7f0e6;
+  box-shadow: 0 10px 24px rgba(81, 20, 25, 0.1);
+}
+
+.wishes {
+  box-sizing: border-box;
+  margin: 0;
+  width: 100%;
+  max-width: none;
+  max-height: min(48vh, 340px);
+  overflow-x: hidden;
   overflow-y: auto;
-  padding-right: 8px;
+  padding: 0 8px 0 0;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(81, 20, 25, 0.45) transparent;
+}
+
+.wishes::-webkit-scrollbar {
+  width: 4px;
+}
+
+.wishes::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.wishes::-webkit-scrollbar-thumb {
+  background: rgba(81, 20, 25, 0.4);
+  border-radius: 999px;
+}
+
+.wishes::-webkit-scrollbar-thumb:hover {
+  background: rgba(81, 20, 25, 0.55);
 }
 
 .wish {
-  margin-bottom: 12px;
-  border: 1px solid rgba(81, 20, 25, 0.333);
-  border-radius: 8px;
-  padding: 16px;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0 0 10px;
+  border: 1px solid color-mix(in srgb, #511419 18%, transparent);
+  border-radius: 12px;
+  padding: 12px 14px;
+  font-family: var(--font-body);
   font-size: 14px;
-  background: rgba(255, 255, 255, 0.55);
+  color: var(--ink-burgundy);
+  background: #fff7eb;
+}
+
+.wish:last-child {
+  margin-bottom: 0;
 }
 
 .wish-head {
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 4px;
 }
 
 .wish-name {
+  width: 100%;
+  font-family: var(--font-title);
   font-weight: 600;
+  letter-spacing: 0.01em;
   color: var(--ink-burgundy);
+  overflow-wrap: anywhere;
 }
 
 .wish-time {
-  font-size: 12px;
-  opacity: 0.7;
+  font-size: 11px;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-burgundy-80);
 }
 
 .wish p {
   margin: 8px 0 0;
-  line-height: 1.625;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+.wish-status {
+  margin: 0;
+  padding: 28px 16px;
+  text-align: center;
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--ink-burgundy-80);
+  border: 1px dashed color-mix(in srgb, #511419 18%, transparent);
+  border-radius: 12px;
+  background: #fff7eb;
+}
+
+.wish-status--error {
+  color: var(--ink-burgundy-deep);
 }
 
 .gift-castle {
@@ -2786,9 +2862,39 @@ a {
     padding-top: 120px;
   }
 
-  .gb-form,
-  .wishes {
+  .gb-stack {
     max-width: 380px;
+  }
+
+  .wishes-panel {
+    margin-top: 140px;
+    padding: 14px 8px 14px 14px;
+  }
+
+  .wishes {
+    max-height: min(46vh, 420px);
+  }
+
+  .wish {
+    padding: 14px 16px;
+  }
+
+  .wish-head {
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .wish-name {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  .wish-time {
+    flex: 0 0 auto;
+    font-size: 12px;
+    white-space: nowrap;
   }
 
   .gb-form textarea {

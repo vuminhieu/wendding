@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600&family=Great+Vibes&family=Lora:wght@300;400;600&family=Ms+Madi&family=The+Nautigal:wght@400&family=Uchen&family=Viaoda+Libre&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/invitation.css?v=paperbob3">
+  <link rel="stylesheet" href="css/invitation.css?v=wish-align5">
   <link rel="preload" as="image" href="assets/photos/hero.webp">
   <link rel="preload" as="image" href="assets/photos/full/02.webp">
 </head>
@@ -299,19 +299,23 @@ TƯ GIA</div>
       <img class="papernote" src="assets/theme/papernote-background.webp" alt="" aria-hidden="true">
       <section class="guestbook" data-landing-screenshot-id="invite-guestbook">
         <h2 class="cream-h2 guestbook-h2">Sổ lưu bút</h2>
-        <form class="gb-form" id="wish-form">
-          <div class="field">
-            <label class="visually-hidden" for="wish-name">Nhập tên</label>
-            <input id="wish-name" name="name" type="text" placeholder="Nhập tên*" maxlength="500" required>
-          </div>
-          <label class="visually-hidden" for="wish-msg">Nhập lời chúc</label>
-          <textarea id="wish-msg" name="message" placeholder="Nhập lời chúc*" maxlength="10000" required></textarea>
-          <div class="gb-actions">
-            <button type="button" class="ai-btn" id="ai-wish" title="Tạo lời chúc mẫu" aria-label="Tạo lời chúc mẫu">🪄</button>
-            <button type="submit" class="submit">GỬI LỜI CHÚC</button>
-          </div>
-        </form>
-        <div class="wishes" id="wishes"></div>
+        <div class="gb-stack">
+          <form class="gb-form" id="wish-form">
+            <div class="field">
+              <label class="visually-hidden" for="wish-name">Nhập tên</label>
+              <input id="wish-name" name="name" type="text" placeholder="Nhập tên*" maxlength="500" required>
+            </div>
+            <label class="visually-hidden" for="wish-msg">Nhập lời chúc</label>
+            <textarea id="wish-msg" name="message" placeholder="Nhập lời chúc*" maxlength="10000" required></textarea>
+            <div class="gb-actions">
+              <button type="button" class="ai-btn" id="ai-wish" title="Tạo lời chúc mẫu" aria-label="Tạo lời chúc mẫu">🪄</button>
+              <button type="submit" class="submit">GỬI LỜI CHÚC</button>
+            </div>
+          </form>
+        </div>
+        <div class="wishes-panel">
+          <div class="wishes" id="wishes" role="region" aria-label="Lời chúc" aria-live="polite"></div>
+        </div>
       </section>
     </div>
 
@@ -420,6 +424,6 @@ TƯ GIA</div>
 
   <div class="toast" id="toast" role="status"></div>
   <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
-  <script src="js/invitation.js?v=wish-fb1"></script>
+  <script src="js/invitation.js?v=wish-ui1"></script>
 </body>
 </html>
