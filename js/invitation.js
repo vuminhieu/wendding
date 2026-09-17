@@ -22,10 +22,16 @@
     "Mừng ngày vui, chúc gia đình mới luôn đầy ắp tiếng cười."
   ];
 
+  const BGM_TRACKS = [
+    "assets/audio/bai_nay_khong_de_di_dien.mp3",
+    "assets/audio/em-dong-y-i-do.mp3"
+  ];
+
   const overlay = document.getElementById("overlay");
   const openBtn = document.getElementById("open-invite");
   const musicBtn = document.getElementById("music-btn");
   const bgm = document.getElementById("bgm");
+  let bgmIndex = 0;
   const toast = document.getElementById("toast");
   const params = new URLSearchParams(location.search);
   const alreadyOpen = params.get("open") === "1";
@@ -150,7 +156,16 @@
     }
   }
 
+  function loadBgmTrack(index) {
+    bgmIndex = ((index % BGM_TRACKS.length) + BGM_TRACKS.length) % BGM_TRACKS.length;
+    const next = BGM_TRACKS[bgmIndex];
+    if (bgm.getAttribute("src") !== next) {
+      bgm.src = next;
+    }
+  }
+
   function playMusic() {
+    loadBgmTrack(bgmIndex);
     bgm.play().then(() => {
       musicBtn.classList.add("is-playing");
       musicBtn.setAttribute("aria-label", "Tạm dừng nhạc");
@@ -525,6 +540,10 @@
   musicBtn.addEventListener("click", () => {
     if (bgm.paused) playMusic();
     else pauseMusic();
+  });
+  bgm.addEventListener("ended", () => {
+    loadBgmTrack(bgmIndex + 1);
+    playMusic();
   });
 
   document.getElementById("album-prev").addEventListener("click", () => stepAlbum(-1, true));
