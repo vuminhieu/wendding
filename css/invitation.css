@@ -654,8 +654,7 @@ a {
 }
 
 .ceremony-flower .float {
-  animation-duration: 5.5s;
-  animation-delay: 0.6s;
+  animation: paperFlowerBob 6.2s ease-in-out 0.2s infinite;
 }
 
 .banquet-flower {
@@ -665,8 +664,7 @@ a {
 }
 
 .banquet-flower .float {
-  animation-duration: 6s;
-  animation-delay: 0.3s;
+  animation: paperFlowerBob 6.6s ease-in-out 0.4s infinite reverse;
 }
 
 .banquet-flower--bride {
@@ -1703,13 +1701,19 @@ a {
 .heart {
   position: absolute;
   top: -30px;
-  animation: ambient-fall var(--dur, 22s) ease-in-out var(--delay, 0s) infinite;
+  animation: ambient-fall var(--dur, 14s) linear var(--delay, 0s) infinite;
+  will-change: transform;
 }
 
 .heart svg {
   width: 1em;
   height: 1em;
   fill: currentColor;
+}
+
+.heart--float {
+  top: auto;
+  animation: overlayHeartFloat 5.6s ease-in-out infinite;
 }
 
 .overlay-card-wrap {
@@ -1885,6 +1889,7 @@ a {
   position: relative;
   display: flex;
   width: fit-content;
+  min-height: 44px;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
@@ -1899,7 +1904,17 @@ a {
   background: var(--ink-burgundy);
   color: var(--overlay-btn);
   box-shadow: 0 4px 14px rgba(81, 20, 25, 0.35);
+  cursor: pointer;
   user-select: none;
+  animation: openBtnPulse 2.2s ease-in-out infinite;
+  will-change: transform, box-shadow;
+}
+
+.open-btn:hover,
+.open-btn:focus-visible {
+  animation: none;
+  transform: scale(1.06);
+  box-shadow: 0 8px 22px rgba(81, 20, 25, 0.5);
 }
 
 .shine {
@@ -1908,8 +1923,8 @@ a {
   height: 100%;
   width: 32px;
   pointer-events: none;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-  animation: shine 3s ease-in-out infinite;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.45), transparent);
+  animation: shine 2s ease-in-out infinite;
 }
 
 .modal {
@@ -2212,6 +2227,16 @@ a {
   }
 }
 
+@keyframes paperFlowerBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-24px);
+  }
+}
+
 @keyframes envPhotoBob {
   0%,
   100% {
@@ -2249,10 +2274,37 @@ a {
   }
 }
 
+@keyframes overlayHeartFloat {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+    opacity: 0.92;
+  }
+  50% {
+    transform: translate3d(var(--sway, 8px), -18px, 0);
+    opacity: 1;
+  }
+}
+
 @keyframes overlayHeartLift {
+  from {
+    opacity: 1;
+  }
   to {
-    transform: translate3d(var(--sway, 16px), -18vh, 0);
+    transform: translate3d(var(--sway, 16px), -42px, 0);
     opacity: 0;
+  }
+}
+
+@keyframes openBtnPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 14px rgba(81, 20, 25, 0.35);
+  }
+  50% {
+    transform: scale(1.07);
+    box-shadow: 0 10px 24px rgba(81, 20, 25, 0.48);
   }
 }
 
@@ -2285,14 +2337,17 @@ a {
 
 @keyframes ambient-fall {
   0% {
-    transform: translate3d(0, -10vh, 0);
+    transform: translate3d(0, -8vh, 0);
     opacity: 0;
   }
-  10% {
+  8% {
+    opacity: 0.9;
+  }
+  92% {
     opacity: 0.85;
   }
   100% {
-    transform: translate3d(var(--sway, 16px), 110vh, 0);
+    transform: translate3d(var(--sway, 16px), 108vh, 0);
     opacity: 0;
   }
 }
@@ -2681,12 +2736,18 @@ body.is-opening .seal {
 }
 
 body.is-opening .hearts .heart {
-  animation: overlayHeartLift 1.5s ease forwards;
+  animation: overlayHeartLift 1.6s ease forwards;
+}
+
+body.is-opening .open-btn {
+  animation: none;
+  opacity: 0;
+  transform: scale(0.96);
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .seal,
-  .shine,
   .sparkle,
   .music-btn.is-playing .music-disc {
     animation: none !important;

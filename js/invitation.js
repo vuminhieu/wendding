@@ -62,21 +62,29 @@
     setTimeout(() => toast.classList.remove("is-on"), 2200);
   }
 
-  function spawnHearts(root, n) {
+  function spawnHearts(root, n, mode) {
     if (!root) return;
     const colors = ["#a8323b", "#ece4d8", "#c9a24a", "#7a1f26"];
     for (let i = 0; i < n; i++) {
       const el = document.createElement("div");
-      el.className = "heart";
       const size = 12 + Math.random() * 14;
-      const sway = (Math.random() * 72 - 36).toFixed(2);
-      el.style.left = `${Math.random() * 94}%`;
       el.style.color = colors[i % colors.length];
       el.style.fontSize = `${size}px`;
-      el.style.setProperty("--sway", `${sway}px`);
-      el.style.setProperty("--dur", `${16 + Math.random() * 10}s`);
-      el.style.setProperty("--delay", `${-Math.random() * 24}s`);
       el.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>';
+      if (mode === "float") {
+        el.className = "heart heart--float";
+        el.style.left = `${4 + Math.random() * 90}%`;
+        el.style.top = `${6 + Math.random() * 84}%`;
+        el.style.setProperty("--sway", `${(Math.random() * 18 - 9).toFixed(1)}px`);
+        el.style.animationDuration = `${4.8 + Math.random() * 2.4}s`;
+        el.style.animationDelay = `${(-Math.random() * 5).toFixed(2)}s`;
+      } else {
+        el.className = "heart";
+        el.style.left = `${Math.random() * 94}%`;
+        el.style.setProperty("--sway", `${(Math.random() * 72 - 36).toFixed(2)}px`);
+        el.style.setProperty("--dur", `${10 + Math.random() * 6}s`);
+        el.style.setProperty("--delay", `${-Math.random() * 16}s`);
+      }
       root.appendChild(el);
     }
   }
@@ -435,7 +443,7 @@
       .replace(/"/g, "&quot;");
   }
 
-  spawnHearts(document.getElementById("hearts"), 32);
+  spawnHearts(document.getElementById("hearts"), 22, "float");
   spawnHearts(document.getElementById("page-falls"), 28);
   buildCalendar("calendar-grid-groom", 24);
   buildCalendar("calendar-grid-bride", 25);
