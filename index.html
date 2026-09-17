@@ -7,11 +7,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Lora:wght@300;400;600&family=Ms+Madi&family=The+Nautigal:wght@400&family=Uchen&family=Viaoda+Libre&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/invitation.css">
+  <link rel="stylesheet" href="css/invitation.css?v=guest1">
   <link rel="preload" as="image" href="assets/photos/hero.webp">
+  <link rel="preload" as="image" href="assets/photos/full/02.webp">
 </head>
 <body>
+  <div class="page-bg" aria-hidden="true">
+    <img src="assets/photos/full/02.webp" alt="" decoding="async">
+  </div>
   <div class="overlay" id="overlay" data-landing-screenshot-id="invite-envelope">
+    <div class="overlay-bg" aria-hidden="true">
+      <img src="assets/photos/full/02.webp" alt="" decoding="async">
+    </div>
     <div class="hearts" id="hearts" aria-hidden="true"></div>
     <div class="overlay-card-wrap">
       <div class="seal" aria-hidden="true">
@@ -35,6 +42,7 @@
           </div>
           <p class="overlay-date">25 tháng 10, 2026</p>
           <p class="overlay-invite">Thân Mời</p>
+          <p class="overlay-guest" id="overlay-guest" hidden></p>
           <button type="button" class="open-btn" id="open-invite">
             <span>Mở thiệp</span>
             <span class="shine" aria-hidden="true"></span>
@@ -69,6 +77,7 @@
         <span class="hero-amp" aria-hidden="true">&amp;</span>
         <p class="hero-name">Phương Anh</p>
       </div>
+      <p class="hero-guest" id="hero-guest" hidden></p>
     </header>
 
     <section class="paper-wrap">
@@ -427,6 +436,6 @@ TƯ GIA</div>
 
   <div class="toast" id="toast" role="status"></div>
   <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
-  <script src="js/invitation.js?v=album4"></script>
+  <script src="js/invitation.js?v=guest1"></script>
 </body>
 </html>

@@ -68,6 +68,10 @@ a {
   color: inherit;
 }
 
+.page-bg {
+  display: none;
+}
+
 .invitation {
   position: relative;
   isolation: isolate;
@@ -96,9 +100,40 @@ a {
 }
 
 @media (min-width: 768px) {
+  .page-bg {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  .page-bg img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 50% 38%;
+    transform: scale(1.04);
+    filter: blur(5px) saturate(1.08) brightness(0.92);
+  }
+
+  .page-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(28, 12, 10, 0.06) 0%, rgba(28, 12, 10, 0.28) 68%, rgba(16, 6, 6, 0.5) 100%),
+      linear-gradient(180deg, rgba(255, 214, 170, 0.08) 0%, transparent 36%, rgba(28, 10, 8, 0.28) 100%);
+  }
+
   .invitation {
+    z-index: 1;
     max-width: 900px;
     border: 1px solid var(--border-invitation);
+    box-shadow:
+      0 24px 80px rgba(16, 6, 6, 0.38),
+      0 0 0 1px rgba(255, 250, 243, 0.08);
   }
 }
 
@@ -260,6 +295,20 @@ a {
   font-weight: 300;
   line-height: 1;
   color: var(--ink-amp-hero);
+}
+
+.hero-guest {
+  position: relative;
+  z-index: 10;
+  margin: 12px 0 0;
+  padding: 0 24px;
+  text-align: center;
+  font-family: var(--font-overlay);
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--ink-burgundy);
+  line-height: 1.4;
+  word-break: break-word;
 }
 
 .paper-wrap {
@@ -1522,8 +1571,34 @@ a {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: linear-gradient(to bottom right, #6e1a20, #511419, #380a0e);
+  background: #511419;
   transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.overlay-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.overlay-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 48% 42%;
+  transform: scale(1.03);
+  filter: blur(2.5px) saturate(1.06) brightness(1.02);
+}
+
+.overlay-bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 50% 42%, rgba(28, 12, 10, 0.04) 0%, rgba(28, 12, 10, 0.22) 72%, rgba(20, 8, 6, 0.42) 100%),
+    linear-gradient(180deg, rgba(255, 214, 170, 0.08) 0%, transparent 38%, rgba(28, 10, 8, 0.28) 100%);
 }
 
 .overlay.is-leaving {
@@ -1589,9 +1664,9 @@ a {
   position: relative;
   border-radius: 8px;
   box-shadow:
-    0 25px 60px -12px rgba(0, 0, 0, 0.45),
-    0 8px 24px rgba(0, 0, 0, 0.2),
-    0 0 40px rgba(81, 20, 25, 0.15);
+    0 28px 70px -12px rgba(0, 0, 0, 0.55),
+    0 10px 28px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(255, 250, 243, 0.12);
 }
 
 .overlay-sheet {
@@ -1692,6 +1767,20 @@ a {
 
 .overlay-invite {
   margin-bottom: 24px;
+}
+
+.overlay-invite:has(+ .overlay-guest:not([hidden])) {
+  margin-bottom: 0;
+}
+
+.overlay-guest {
+  margin: 8px 0 24px;
+  font-family: var(--font-overlay);
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(81, 20, 25, 0.88);
+  line-height: 1.35;
+  word-break: break-word;
 }
 
 .open-btn {
@@ -2111,6 +2200,18 @@ a {
 }
 
 @media (min-width: 768px) {
+  .overlay-bg img {
+    object-position: 50% 38%;
+    transform: scale(1.02);
+    filter: blur(3px) saturate(1.08) brightness(1.04);
+  }
+
+  .overlay-bg::after {
+    background:
+      radial-gradient(ellipse at 50% 40%, rgba(28, 12, 10, 0.02) 0%, rgba(28, 12, 10, 0.16) 70%, rgba(20, 8, 6, 0.34) 100%),
+      linear-gradient(180deg, rgba(255, 214, 170, 0.1) 0%, transparent 36%, rgba(28, 10, 8, 0.22) 100%);
+  }
+
   .save-the-date {
     font-size: 18px;
   }
@@ -2338,6 +2439,14 @@ a {
 }
 
 @media (min-width: 1024px) {
+  .page-bg img {
+    filter: blur(6px) saturate(1.1) brightness(0.94);
+  }
+
+  .overlay-bg img {
+    filter: blur(3.5px) saturate(1.08) brightness(1.05);
+  }
+
   .overlay-card-wrap {
     width: 600px;
   }

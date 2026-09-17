@@ -29,6 +29,31 @@
   const toast = document.getElementById("toast");
   const params = new URLSearchParams(location.search);
   const alreadyOpen = params.get("open") === "1";
+  const MAX_GUEST_NAME = 80;
+
+  function sanitizeGuestName(raw) {
+    if (raw == null) return "";
+    const name = String(raw)
+      .replace(/[\u0000-\u001F\u007F]/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+    if (!name) return "";
+    return name.length > MAX_GUEST_NAME ? name.slice(0, MAX_GUEST_NAME).trim() : name;
+  }
+
+  function applyGuestName(name) {
+    if (!name) return;
+    const overlayGuest = document.getElementById("overlay-guest");
+    const heroGuest = document.getElementById("hero-guest");
+    const wishName = document.getElementById("wish-name");
+    overlayGuest.textContent = name;
+    overlayGuest.hidden = false;
+    heroGuest.textContent = "Kính mời " + name;
+    heroGuest.hidden = false;
+    if (wishName && !wishName.value) wishName.value = name;
+  }
+
+  applyGuestName(sanitizeGuestName(params.get("to")));
 
   function showToast(msg) {
     toast.textContent = msg;
