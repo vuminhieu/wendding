@@ -101,6 +101,26 @@ a {
   position: relative;
 }
 
+/* The invitation is already rendered beneath the landing card. Keeping a
+   restrained resting offset makes the reveal feel connected to the cover. */
+.invitation {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1.1s var(--ease-micro), transform 1.1s var(--ease-micro);
+  will-change: opacity, transform;
+}
+
+body.await-open .invitation {
+  opacity: 0.92;
+  pointer-events: none;
+  transform: translateY(18px);
+}
+
+body.is-opening .invitation {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 @media (min-width: 768px) {
   .page-bg {
     display: block;
@@ -2968,6 +2988,27 @@ a {
   z-index: 1;
 }
 
+body.is-opening .overlay-card-wrap {
+  animation: none;
+  transform: translateY(-16px) scale(1.025);
+  transition: transform 1.6s var(--ease-micro);
+}
+
+body.is-opening .overlay-shadow {
+  box-shadow: 0 30px 70px rgba(16, 6, 6, 0.36);
+  transition: box-shadow 1.6s var(--ease-micro);
+}
+
+body.is-opening .overlay-sheet,
+body.is-opening .overlay-body {
+  transition: opacity 0.75s ease, transform 0.75s ease;
+}
+
+body.is-opening .overlay-body {
+  opacity: 0;
+  transform: translateY(-10px) scale(0.985);
+}
+
 body.is-opening .overlay-flower {
   animation: overlayFlowerLift 1.6s ease forwards;
 }
@@ -2993,6 +3034,31 @@ body.is-opening .open-btn {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .invitation,
+  body.await-open .invitation,
+  body.is-opening .invitation,
+  body.is-opening .overlay-card-wrap,
+  body.is-opening .overlay-shadow,
+  body.is-opening .overlay-sheet,
+  body.is-opening .overlay-body,
+  body.is-opening .open-btn,
+  .overlay {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+
+  body.await-open .invitation,
+  body.is-opening .invitation,
+  body.is-opening .overlay-card-wrap {
+    opacity: 1;
+    transform: none;
+  }
+
+  body.is-opening .overlay-body {
+    opacity: 1;
+    transform: none;
+  }
+
   .sparkle,
   .music-btn.is-playing .music-disc {
     animation: none !important;
