@@ -48,7 +48,7 @@
     const wishName = document.getElementById("wish-name");
     overlayGuest.textContent = name;
     overlayGuest.hidden = false;
-    heroGuest.textContent = "Kính mời " + name;
+    heroGuest.textContent = "Thân mời " + name;
     heroGuest.hidden = false;
     if (wishName && !wishName.value) wishName.value = name;
   }
