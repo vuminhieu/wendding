@@ -1,0 +1,362 @@
+{
+  "album.html": {
+    "len": 5966,
+    "styles": [
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;font-size:20px;letter-spacing:0.03em",
+      "perspective:1000px",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(0%) translateZ(0px) rotateY(0deg) scale(1); opacity: 1; z-index: 100;",
+      "object-position:50% 50%",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(60%) translateZ(-150px) rotateY(45deg) scale(0.85); opacity: 0.75; z-index: 99;",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(120%) translateZ(-300px) rotateY(90deg) scale(0.7); opacity: 0.5; z-index: 98;",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(180%) translateZ(-450px) rotateY(135deg) scale(0.7); opacity: 0.3; z-index: 97;",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(-180%) translateZ(-450px) rotateY(-135deg) scale(0.7); opacity: 0.3; z-index: 97;",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(-120%) translateZ(-300px) rotateY(-90deg) scale(0.7); opacity: 0.5; z-index: 98;",
+      "aspect-ratio: 0.666667 / 1; transition-duration: 1100ms; transform: translateX(-60%) translateZ(-150px) rotateY(-45deg) scale(0.85); opacity: 0.75; z-index: 99;"
+    ],
+    "aria": [
+      "Previous photo",
+      "Next photo",
+      "Go to photo 1",
+      "Go to photo 2",
+      "Go to photo 3",
+      "Go to photo 4",
+      "Go to photo 5",
+      "Go to photo 6",
+      "Go to photo 7"
+    ],
+    "alt": [
+      "",
+      "Wedding photo 1",
+      "Wedding photo 2",
+      "Wedding photo 3",
+      "Wedding photo 4",
+      "Wedding photo 5",
+      "Wedding photo 6",
+      "Wedding photo 7"
+    ],
+    "data": [],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": [
+      "transform: translateX(0%) translateZ(0px) rotateY(0deg) scale(1)",
+      "transform: translateX(60%) translateZ(-150px) rotateY(45deg) scale(0.85)",
+      "transform: translateX(120%) translateZ(-300px) rotateY(90deg) scale(0.7)",
+      "transform: translateX(180%) translateZ(-450px) rotateY(135deg) scale(0.7)",
+      "transform: translateX(-180%) translateZ(-450px) rotateY(-135deg) scale(0.7)",
+      "transform: translateX(-120%) translateZ(-300px) rotateY(-90deg) scale(0.7)",
+      "transform: translateX(-60%) translateZ(-150px) rotateY(-45deg) scale(0.85)"
+    ]
+  },
+  "banquet.html": {
+    "len": 11277,
+    "styles": [
+      "will-change: transform; transform: translateY(0px);",
+      "animation:drFloat 6s ease-in-out infinite;animation-delay:0.3s;will-change:transform",
+      "background-color:#511419",
+      "color:#ece4d8;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;letter-spacing:0.03em",
+      "font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif;color:#ece4d8",
+      "color:#ece4d8;font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif;text-transform:uppercase",
+      "color:rgba(236,228,216,0.7);font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif",
+      "color:#ece4d8;font-family:&quot;Times New Roman&quot;, serif",
+      "background-color:rgba(236,228,216,0.45)",
+      "color:#ece4d8;font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif",
+      "background-color:#ece4d8",
+      "color:#511419",
+      "border-color:color-mix(in srgb, #511419 27%, transparent);font-family:&quot;The Nautigal&quot;, cursive;color:#511419;font-size:25px",
+      "border-color:#511419",
+      "color:#fff",
+      "color:#ece4d8;font-family:&quot;Times New Roman&quot;, serif;background:none",
+      "background-color:#ece4d8;color:#511419;font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif"
+    ],
+    "aria": [],
+    "alt": [
+      "",
+      ""
+    ],
+    "data": [
+      "data-landing-screenshot-id=\"invite-reception\"",
+      "data-landing-screenshot-id=\"invite-rsvp\""
+    ],
+    "keyframes_hint": true,
+    "animation": [
+      "animation:drFloat 6s ease-in-out infinite"
+    ],
+    "transform": [
+      "transform: translateY(0px)",
+      "transform:uppercase"
+    ]
+  },
+  "brand.html": {
+    "len": 256,
+    "styles": [
+      "color:#511419"
+    ],
+    "aria": [],
+    "alt": [],
+    "data": [],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": []
+  },
+  "ceremony.html": {
+    "len": 6011,
+    "styles": [
+      "will-change: transform; transform: translateY(0px);",
+      "animation:drFloat 5.5s ease-in-out infinite;animation-delay:0.6s;will-change:transform",
+      "background-color:#511419",
+      "color:#ece4d8;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;letter-spacing:0.03em",
+      "color:#ece4d8;font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif",
+      "color:rgba(236,228,216,0.7)",
+      "color: rgb(236, 228, 216); font-size: 14px;",
+      "background-color:rgba(236,228,216,0.4)",
+      "white-space:pre-line;font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif;color:#ece4d8",
+      "font-size: 46px; font-family: &quot;Viaoda Libre&quot;, &quot;The Nautigal&quot;, cursive; color: rgb(236, 228, 216);",
+      "color:rgba(236,228,216,0.7);font-family:&quot;Uchen&quot;, &quot;Baskerville&quot;, serif;letter-spacing:0.14em",
+      "color:#ece4d8;font-family:&quot;Ms Madi&quot;, cursive",
+      "font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif",
+      "color:#ece4d8",
+      "font-family:&quot;Times New Roman&quot;, serif;color:#ece4d8",
+      "background-color:rgba(236,228,216,0.45)",
+      "color:rgba(236,228,216,0.7);font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif"
+    ],
+    "aria": [],
+    "alt": [
+      "",
+      ""
+    ],
+    "data": [],
+    "keyframes_hint": true,
+    "animation": [
+      "animation:drFloat 5.5s ease-in-out infinite"
+    ],
+    "transform": [
+      "transform: translateY(0px)"
+    ]
+  },
+  "dress.html": {
+    "len": 1105,
+    "styles": [
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;font-size:20px;letter-spacing:0.03em",
+      "color:rgba(81,20,25,0.8);font-family:&quot;Times New Roman&quot;, serif",
+      "background-color:#511419;border:none",
+      "background-color:#8C3A3F;border:none",
+      "background-color:#C9A24A;border:none",
+      "background-color:#ECE4D8;border:1.5px solid #51141930"
+    ],
+    "aria": [],
+    "alt": [],
+    "data": [],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": []
+  },
+  "footer.html": {
+    "len": 376,
+    "styles": [
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif"
+    ],
+    "aria": [],
+    "alt": [],
+    "data": [],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": []
+  },
+  "gift.html": {
+    "len": 6455,
+    "styles": [
+      "background-color:transparent",
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;letter-spacing:0.03em",
+      "width:250px;height:357px",
+      "top:6%;left:12%;color:#b58b2f;font-size:20.9px",
+      "top:14%;right:8%;color:#b58b2f;font-size:15.200000000000001px",
+      "top:34%;left:3%;color:#b58b2f;font-size:13.3px",
+      "top:24%;right:3%;color:#b58b2f;font-size:13.3px",
+      "width:190px;height:275px",
+      "left:50%;bottom:-6px;width:125.4px;height:11px;margin-left:-62.7px;border-radius:50%;background-color:rgba(0,0,0,0.45);filter:blur(4px);z-index:0;will-change:transform, opacity",
+      "width:100%;height:100%;object-fit:contain;object-position:center bottom;transform-origin:50% 100%;transform:translateX(20%) translateY(-10%) scale(-0.8, 0.8) rotate(-15deg);z-index:1;filter:drop-shadow(0 8px 14px rgba(0,0,0,0.18));will-change:transform",
+      "width:100%;height:100%;object-fit:contain;object-position:center bottom;rotate:-10deg;z-index:2;filter:drop-shadow(0 10px 18px rgba(0,0,0,0.22));will-change:transform",
+      "color:#511419",
+      "background-color:#fff7eb",
+      "background-color:#511419",
+      "text-shadow:1px 1px 2px rgba(0,0,0,0.2);font-family:&quot;Times New Roman&quot;, serif;font-weight:700;letter-spacing:0.03em;color:white",
+      "border:2px solid #51141920",
+      "color:#511419;background-color:#51141915"
+    ],
+    "aria": [
+      "Mở hộp mừng cưới"
+    ],
+    "alt": [
+      "",
+      "",
+      "",
+      "QR - Chú Rể - TRAN TUAN KIET",
+      "QR - Cô Dâu - LE MINH ANH"
+    ],
+    "data": [],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": [
+      "transform:translateX(20%) translateY(-10%) scale(-0.8, 0.8) rotate(-15deg)"
+    ]
+  },
+  "guestbook.html": {
+    "len": 6638,
+    "styles": [
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif",
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;font-size:20px;letter-spacing:0.03em",
+      "background:transparent",
+      "border-color:#511419;color:#511419;background-color:transparent",
+      "border-color:#511419;color:#511419;background-color:transparent;resize:none",
+      "background-color:#5114191A;color:#511419",
+      "background-color:#511419;color:#ded9d7",
+      "border-color: rgba(81, 20, 25, 0.333); background-color: rgba(255, 255, 255, 0.55);",
+      "color: rgb(81, 20, 25);"
+    ],
+    "aria": [],
+    "alt": [
+      ""
+    ],
+    "data": [
+      "data-landing-screenshot-id=\"invite-guestbook\""
+    ],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": []
+  },
+  "header.html": {
+    "len": 2527,
+    "styles": [
+      "font-family:&quot;Cormorant Garamond&quot;, &quot;Times New Roman&quot;, serif;color:#590310;letter-spacing:0.16em;font-weight:600",
+      "animation:drFloat 6.5s ease-in-out infinite;animation-delay:0.4s;will-change:transform",
+      "animation:drFloat 5s ease-in-out infinite;animation-delay:0s;will-change:transform",
+      "font-family:&quot;Viaoda Libre&quot;, &quot;The Nautigal&quot;, cursive;color:#511419",
+      "font-family:&quot;The Nautigal&quot;, cursive;color:rgba(81,20,25,0.15)"
+    ],
+    "aria": [],
+    "alt": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "data": [],
+    "keyframes_hint": true,
+    "animation": [
+      "animation:drFloat 6.5s ease-in-out infinite",
+      "animation:drFloat 5s ease-in-out infinite"
+    ],
+    "transform": []
+  },
+  "overlay.html": {
+    "len": 11049,
+    "styles": [
+      "background:linear-gradient(to bottom right, #6e1a20, #511419, #380a0e)",
+      "z-index:1",
+      "left:30.328110058326274%;top:-30px;bottom:auto;color:#a8323b;font-size:13.239518091082573px;--sway:28.045056760311127px;animation:ambient-fall 24.864892337471247s ease-in-out -21.653968180870642s infinite",
+      "left:17.2156402352266%;top:-30px;bottom:auto;color:#ece4d8;font-size:22.52704422408715px;--sway:0.5086997570469975px;animation:ambient-fall 25.939923219382763s ease-in-out -10.373923639564312s infinite",
+      "left:70.28673367807642%;top:-30px;bottom:auto;color:#c9a24a;font-size:17.490823671221733px;--sway:-28.064687317237258px;animation:ambient-fall 25.735697017982602s ease-in-out -8.38276002209779s infinite",
+      "left:33.55705370660871%;top:-30px;bottom:auto;color:#a8323b;font-size:22.95301177399233px;--sway:29.648285089060664px;animation:ambient-fall 20.143269890919328s ease-in-out -19.691254769751314s infinite",
+      "left:26.469557804521173%;top:-30px;bottom:auto;color:#c9a24a;font-size:23.15696965251118px;--sway:-12.885547913610935px;animation:ambient-fall 25.567597473040223s ease-in-out -13.424423354492045s infinite",
+      "left:83.32324994262308%;top:-30px;bottom:auto;color:#c9a24a;font-size:22.533293027430773px;--sway:-25.829533128999174px;animation:ambient-fall 24.974357422441244s ease-in-out -0.10417875222258054s infinite",
+      "left:9.044427201151848%;top:-30px;bottom:auto;color:#a8323b;font-size:18.041713471524417px;--sway:4.726191689260304px;animation:ambient-fall 23.068060817196965s ease-in-out -0.3111351032288825s infinite",
+      "left:69.74547695368528%;top:-30px;bottom:auto;color:#c9a24a;font-size:12.927935962565243px;--sway:23.722335817292333px;animation:ambient-fall 20.770730067044497s ease-in-out -7.488872562911941s infinite",
+      "left:18.21989078540355%;top:-30px;bottom:auto;color:#ece4d8;font-size:22.310039413161576px;--sway:25.63739493023604px;animation:ambient-fall 21.859994553029537s ease-in-out -20.672057977395454s infinite",
+      "left:51.80270069278777%;top:-30px;bottom:auto;color:#7a1f26;font-size:20.954792595934123px;--sway:-15.57284370996058px;animation:ambient-fall 18.015412013977766s ease-in-out -0.6715260601425447s infinite",
+      "left:25.922949633095413%;top:-30px;bottom:auto;color:#7a1f26;font-size:17.78661971958354px;--sway:5.172966560348868px;animation:ambient-fall 24.570506004616618s ease-in-out -23.242164605190787s infinite",
+      "left:91.75902127986774%;top:-30px;bottom:auto;color:#c9a24a;font-size:12.577464719302952px;--sway:-11.355045181699097px;animation:ambient-fall 20.06618256494403s ease-in-out -0.4162974501267686s infinite",
+      "z-index:10",
+      "top:50px;width:56px;height:56px;transform:translate(-50%, -50%);background:radial-gradient(circle at 30% 30%, #511419, rgb(51, 0, 0));--shadow-color:rgba(81, 20, 25, 0.5);box-shadow:0 4px 20px rgba(81, 20, 25, 0.5), inset 0 2px 4px rgba(255,255,255,0.3);z-index:30;animation:seal-pulse 2s ease-in-out infinite",
+      "fill:#f3e8de",
+      "box-shadow:0 25px 60px -12px rgba(0, 0, 0, 0.45), 0 8px 24px rgba(0, 0, 0, 0.2), 0 0 40px rgba(81, 20, 25, 0.15)",
+      "background:rgba(255, 250, 243, 0.96);border:1px solid rgba(81, 20, 25, 0.15);clip-path:inset(0 round 8px)",
+      "color:#511419;font-family:&quot;Viaoda Libre&quot;, &quot;EB Garamond&quot;, serif",
+      "font-family:&quot;Viaoda Libre&quot;, &quot;EB Garamond&quot;, serif",
+      "font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif",
+      "background:linear-gradient(to right, transparent, #511419)",
+      "color:#511419;opacity:0.7",
+      "background:linear-gradient(to left, transparent, #511419)",
+      "color:rgba(81, 20, 25, 0.72);font-family:&quot;Lora&quot;, &quot;Times New Roman&quot;, serif",
+      "background-color:#511419;color:#f3e8de;box-shadow:0 4px 14px rgba(81, 20, 25, 0.35);font-family:&quot;Lora&quot;, &quot;Times New Roman&quot;, serif;-webkit-touch-callout:none;-webkit-user-select:none;user-select:none",
+      "background:linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);animation:shine 3s ease-in-out infinite"
+    ],
+    "aria": [],
+    "alt": [
+      "",
+      ""
+    ],
+    "data": [
+      "data-landing-screenshot-id=\"invite-envelope\""
+    ],
+    "keyframes_hint": true,
+    "animation": [
+      "animation:ambient-fall 24.864892337471247s ease-in-out -21.653968180870642s infinite",
+      "animation:ambient-fall 25.939923219382763s ease-in-out -10.373923639564312s infinite",
+      "animation:ambient-fall 25.735697017982602s ease-in-out -8.38276002209779s infinite",
+      "animation:ambient-fall 20.143269890919328s ease-in-out -19.691254769751314s infinite",
+      "animation:ambient-fall 25.567597473040223s ease-in-out -13.424423354492045s infinite",
+      "animation:ambient-fall 24.974357422441244s ease-in-out -0.10417875222258054s infinite",
+      "animation:ambient-fall 23.068060817196965s ease-in-out -0.3111351032288825s infinite",
+      "animation:ambient-fall 20.770730067044497s ease-in-out -7.488872562911941s infinite",
+      "animation:ambient-fall 21.859994553029537s ease-in-out -20.672057977395454s infinite",
+      "animation:ambient-fall 18.015412013977766s ease-in-out -0.6715260601425447s infinite",
+      "animation:ambient-fall 24.570506004616618s ease-in-out -23.242164605190787s infinite",
+      "animation:ambient-fall 20.06618256494403s ease-in-out -0.4162974501267686s infinite",
+      "animation:seal-pulse 2s ease-in-out infinite",
+      "animation:shine 3s ease-in-out infinite"
+    ],
+    "transform": [
+      "transform:translate(-50%, -50%)"
+    ]
+  },
+  "timeline.html": {
+    "len": 6386,
+    "styles": [
+      "will-change: transform; transform: translateY(0px);",
+      "animation:drFloat 5.2s ease-in-out infinite;animation-delay:0.9s;will-change:transform",
+      "background-color:#511419",
+      "color:#ece4d8;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;letter-spacing:0.03em",
+      "font-family:&quot;Times New Roman&quot;, serif",
+      "color:#ece4d8;font-family:&quot;Times New Roman&quot;, serif",
+      "background-color:color-mix(in srgb, #ece4d8 40%, transparent)",
+      "background-color:#ece4d8;box-shadow:0 0 0 2px color-mix(in srgb, #ece4d8 13%, transparent)",
+      "color:rgba(236,228,216,0.7);font-family:&quot;Times New Roman&quot;, serif",
+      "margin-right:30px"
+    ],
+    "aria": [],
+    "alt": [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "data": [],
+    "keyframes_hint": true,
+    "animation": [
+      "animation:drFloat 5.2s ease-in-out infinite"
+    ],
+    "transform": [
+      "transform: translateY(0px)"
+    ]
+  },
+  "venue.html": {
+    "len": 2504,
+    "styles": [
+      "color:#511419;font-family:&quot;Times New Roman&quot;, serif;font-weight:700;letter-spacing:0.03em",
+      "background-color:transparent;color:rgba(81,20,25,0.8);font-family:&quot;Baskerville&quot;, &quot;Times New Roman&quot;, serif",
+      "border-color:#511419"
+    ],
+    "aria": [],
+    "alt": [
+      ""
+    ],
+    "data": [
+      "data-landing-screenshot-id=\"invite-map\""
+    ],
+    "keyframes_hint": false,
+    "animation": [],
+    "transform": []
+  }
+}

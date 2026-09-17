@@ -1,0 +1,131 @@
+{
+  "album.html": {
+    "len": 5573,
+    "urls": [
+      "assets/theme/castle-background.webp",
+      "assets/photos/01.jpg",
+      "assets/photos/02.jpg",
+      "assets/photos/03.jpg",
+      "assets/photos/04.jpg",
+      "assets/photos/05.jpg",
+      "assets/photos/06.jpg",
+      "assets/photos/07.jpg"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "banquet.html": {
+    "len": 11233,
+    "urls": [
+      "assets/theme/flower2-decoration.webp",
+      "assets/theme/paper.webp",
+      "https://www.google.com/calendar/render?action=TEMPLATE&amp;text=%C4%90%C3%A1m%20c%C6%B0%E1%BB%9Bi%20%C4%90%E1%BA%B7ng%20Ho%C3%A0ng%20Long%20%26%20V%C5%A9%20B%E1%BA%A3o%20Ng%E1%BB%8Dc&amp;dates=20260103T110000Z/20260103T130000Z&amp;ctz=Asia/Ho_Chi_Minh&amp;details=Ti%E1%BB%87c%20c%C6%B0%E1%BB%9Bi%20c%E1%BB%A7a%20%C4%90%E1%BA%B7ng%20Ho%C3%A0ng%20Long%20%26%20V%C5%A9%20B%E1%BA%A3o%20Ng%E1%BB%8Dc%20t%E1%BA%A1i%20Trung%20T%C3%A2m%20H%E1%BB%99i%20Ngh%E1%BB%8B%20White%20Palace%2C%20194%20Ho%C3%A0ng%20V%C4%83n%20Th%E1%BB%A5%2C%20Ph%C6%B0%E1%BB%9Dng%209%2C%20Qu%E1%BA%ADn%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh&amp;location=Trung%20T%C3%A2m%20H%E1%BB%99i%20Ngh%E1%BB%8B%20White%20Palace%2C%20194%20Ho%C3%A0ng%20V%C4%83n%20Th%E1%BB%A5%2C%20Ph%C6%B0%E1%BB%9Dng%209%2C%20Qu%E1%BA%ADn%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "brand.html": {
+    "len": 256,
+    "urls": [
+      "https://chungdoi.com"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "ceremony.html": {
+    "len": 5967,
+    "urls": [
+      "assets/theme/flower2-decoration.webp",
+      "assets/theme/paper.webp"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "dress.html": {
+    "len": 1105,
+    "urls": [],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "footer.html": {
+    "len": 376,
+    "urls": [],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "gift.html": {
+    "len": 6431,
+    "urls": [
+      "assets/theme/castle-background.webp",
+      "assets/envelope/minimalism_darkred.webp",
+      "assets/envelope/minimalism_darkred.webp",
+      "/api/qr-png?d=00020101021238540010A00000072701240006970436011010234567890208QRIBFTTA53037045802VN63049B81&amp;ec=M",
+      "/api/qr-png?d=00020101021238540010A00000072701240006970407011099887766550208QRIBFTTA53037045802VN63043DEB&amp;ec=M"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "guestbook.html": {
+    "len": 6616,
+    "urls": [
+      "assets/theme/papernote-background.webp"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "header.html": {
+    "len": 2388,
+    "urls": [
+      "assets/theme/castle-background.webp",
+      "assets/theme/envelope-background.webp",
+      "assets/photos/hero.jpg",
+      "assets/theme/flower2-decoration.webp",
+      "assets/theme/envelope-cover.webp"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "overlay.html": {
+    "len": 11005,
+    "urls": [
+      "assets/theme/flower2-decoration.webp",
+      "assets/theme/flower2-decoration.webp",
+      "?open=1"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "timeline.html": {
+    "len": 6276,
+    "urls": [
+      "assets/theme/flower2-decoration.webp",
+      "assets/theme/paper.webp",
+      "assets/theme/camera.webp",
+      "assets/theme/cake.webp",
+      "assets/theme/cook.webp"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  },
+  "venue.html": {
+    "len": 2166,
+    "urls": [
+      "assets/theme/castle-background.webp",
+      "https://www.google.com/maps/dir/?api=1&amp;destination=Trung%20T%C3%A2m%20H%E1%BB%99i%20Ngh%E1%BB%8B%20White%20Palace%2C%20194%20Ho%C3%A0ng%20V%C4%83n%20Th%E1%BB%A5%2C%20Ph%C6%B0%E1%BB%9Dng%209%2C%20Qu%E1%BA%ADn%20Ph%C3%BA%20Nhu%E1%BA%ADn%2C%20TP.%20H%E1%BB%93%20Ch%C3%AD%20Minh"
+    ],
+    "has_maps_key": false,
+    "has_cdn": false,
+    "has_theme_abs": false
+  }
+}
