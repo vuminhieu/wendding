@@ -42,6 +42,7 @@ html,
 body {
   margin: 0;
   min-height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -79,7 +80,7 @@ a {
   width: 100%;
   max-width: 480px;
   margin: 0 auto;
-  overflow: hidden;
+  overflow: visible;
   background: var(--surface-page);
 }
 
@@ -173,7 +174,7 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-x: clip;
+  overflow: visible;
   padding: 60px 36px 56px;
   text-align: center;
 }
@@ -229,8 +230,7 @@ a {
   top: -2%;
   z-index: 20;
   width: 64%;
-  animation: drFloat 6.5s ease-in-out infinite;
-  animation-delay: 0.4s;
+  animation: envPhotoBob 6s ease-in-out infinite;
   will-change: transform;
 }
 
@@ -254,6 +254,10 @@ a {
   top: -12%;
   z-index: 25;
   width: 42%;
+}
+
+.hero-flower .float {
+  animation: envFlowerBob 6s ease-in-out infinite;
 }
 
 .hero-flower img {
@@ -332,6 +336,7 @@ a {
   width: 88%;
   max-width: 420px;
   margin: 0 auto;
+  overflow: visible;
 }
 
 .paper-wrap--banquet {
@@ -561,8 +566,39 @@ a {
   color: var(--ink-cream-muted);
 }
 
-.time-row--banquet {
-  max-width: 130px;
+.banquet-when {
+  display: flex;
+  width: 100%;
+  max-width: 220px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.time-weekday,
+.time-clock {
+  display: flex;
+  align-items: center;
+  height: 37px;
+  line-height: 1;
+}
+
+.time-weekday {
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-cream-muted);
+}
+
+.time-clock {
+  font-family: var(--font-title);
+  font-size: 37px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  font-variant-numeric: tabular-nums;
+  color: var(--ink-cream);
 }
 
 .date-block {
@@ -968,7 +1004,11 @@ a {
   width: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 32px 24px;
+  padding: 28px 24px 32px;
+}
+
+.venue-copy {
+  text-align: center;
 }
 
 .venue-title {
@@ -986,43 +1026,66 @@ a {
   margin: 8px auto 0;
   max-width: 260px;
   font-family: var(--font-body);
-  font-size: 12px;
-  font-weight: 300;
+  font-size: 13px;
+  font-weight: 400;
   line-height: 1.625;
   text-align: center;
   white-space: pre-line;
   color: var(--ink-burgundy-80);
 }
 
-.venue-map {
-  margin-top: 12px;
+.venue-card {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  max-width: 338px;
-  height: 268px;
+  max-width: 300px;
+  margin-top: 18px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, #511419 18%, transparent);
+  border-radius: 14px;
+  background: #f7f0e6;
+  box-shadow: 0 10px 24px rgba(81, 20, 25, 0.1);
+}
+
+.venue-map {
+  display: block;
+  width: 100%;
+  height: 148px;
   overflow: hidden;
   border: 0;
-  border-radius: 15px;
-  background: #ece4d8;
+  pointer-events: none;
+  filter: saturate(0.82) contrast(0.96);
 }
 
 .dir {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
-  margin-top: 16px;
-  border-radius: 9999px;
-  padding: 8px 20px;
-  font-family: var(--font-body);
-  font-size: 14px;
-  font-weight: 600;
+  min-height: 44px;
+  margin: 0;
+  padding: 10px 16px;
+  font-family: var(--font-title);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   text-decoration: none;
-  color: var(--ink-burgundy-80);
-  background: transparent;
-  transition: transform 0.15s var(--ease-micro);
+  text-transform: uppercase;
+  color: var(--ink-burgundy);
+  background: #f7f0e6;
+  border-top: 1px solid color-mix(in srgb, #511419 12%, transparent);
+  transition: background-color 0.2s var(--ease-micro), color 0.2s var(--ease-micro);
 }
 
-.dir:hover {
-  transform: scale(1.03);
+.dir:hover,
+.dir:focus-visible {
+  color: var(--ink-cream);
+  background: var(--ink-burgundy);
+}
+
+.dir:focus-visible {
+  outline: 2px solid var(--ink-burgundy);
+  outline-offset: -2px;
 }
 
 .dress {
@@ -1430,13 +1493,16 @@ a {
   transform: translateX(20%) translateY(-10%) scale(-0.8, 0.8) rotate(-15deg);
   z-index: 1;
   filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.18));
+  animation: giftBackBob 5.6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .gift-front {
   transform: rotate(-10deg);
   z-index: 2;
   filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22));
-  animation: ienvHintPulse 2s ease-in-out infinite;
+  animation: giftFrontBob 5.6s ease-in-out infinite;
+  will-change: transform;
 }
 
 .gift-hint {
@@ -1587,7 +1653,7 @@ a {
   justify-content: center;
   overflow: hidden;
   background: #511419;
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity 1.6s ease, transform 1.6s ease;
 }
 
 .overlay-bg {
@@ -1650,6 +1716,7 @@ a {
   position: relative;
   z-index: 10;
   width: 310px;
+  overflow: visible;
 }
 
 .seal {
@@ -1697,22 +1764,28 @@ a {
 .overlay-flower {
   pointer-events: none;
   position: absolute;
-  height: 144px;
+  z-index: 12;
+  height: 210px;
   width: auto;
   max-width: none;
-  opacity: 0.8;
+  opacity: 0.88;
+  will-change: transform, opacity;
 }
 
 .overlay-flower--tl {
-  top: -5%;
-  left: -10px;
-  transform: translateX(-6%) rotate(25deg);
+  top: -12%;
+  left: -28px;
+  --of-base: translateX(-6%) rotate(25deg);
+  transform: var(--of-base);
+  animation: overlayFlowerBob 5.8s ease-in-out infinite;
 }
 
 .overlay-flower--br {
-  bottom: -5%;
-  right: -10px;
-  transform: translateX(6%) scaleX(-1) rotate(-25deg);
+  bottom: -12%;
+  right: -28px;
+  --of-base: translateX(6%) scaleX(-1) rotate(-25deg);
+  transform: var(--of-base);
+  animation: overlayFlowerBob 6.2s ease-in-out infinite reverse;
 }
 
 .overlay-body {
@@ -2139,6 +2212,77 @@ a {
   }
 }
 
+@keyframes envPhotoBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-18px);
+  }
+}
+
+@keyframes envFlowerBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(18px);
+  }
+}
+
+@keyframes overlayFlowerBob {
+  0%,
+  100% {
+    transform: var(--of-base) translateY(0);
+  }
+  50% {
+    transform: var(--of-base) translateY(-12px);
+  }
+}
+
+@keyframes overlayFlowerLift {
+  to {
+    transform: var(--of-base) translateY(-42px);
+    opacity: 0;
+  }
+}
+
+@keyframes overlayHeartLift {
+  to {
+    transform: translate3d(var(--sway, 16px), -18vh, 0);
+    opacity: 0;
+  }
+}
+
+@keyframes sealLift {
+  to {
+    transform: translate(-50%, -92%) scale(1.08);
+    opacity: 0;
+  }
+}
+
+@keyframes giftFrontBob {
+  0%,
+  100% {
+    transform: rotate(-10deg) translateY(0);
+  }
+  50% {
+    transform: rotate(-10deg) translateY(-10px);
+  }
+}
+
+@keyframes giftBackBob {
+  0%,
+  100% {
+    transform: translateX(20%) translateY(-10%) scale(-0.8, 0.8) rotate(-15deg);
+  }
+  50% {
+    transform: translateX(20%) translateY(calc(-10% + 10px)) scale(-0.8, 0.8) rotate(-15deg);
+  }
+}
+
 @keyframes ambient-fall {
   0% {
     transform: translate3d(0, -10vh, 0);
@@ -2306,6 +2450,23 @@ a {
     font-size: 15px;
   }
 
+  .banquet-when {
+    max-width: 250px;
+  }
+
+  .time-weekday,
+  .time-clock {
+    height: 43px;
+  }
+
+  .time-weekday {
+    font-size: 14px;
+  }
+
+  .time-clock {
+    font-size: 43px;
+  }
+
   .day-num {
     font-size: 46px;
   }
@@ -2362,18 +2523,21 @@ a {
   }
 
   .venue-addr {
-    max-width: 440px;
-    font-size: 14px;
-    line-height: 22.75px;
+    max-width: 360px;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .venue-card {
+    max-width: 360px;
   }
 
   .venue-map {
-    max-width: 560px;
-    height: 380px;
+    height: 176px;
   }
 
   .dir {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .dress {
@@ -2470,13 +2634,15 @@ a {
   }
 
   .overlay-flower--tl {
-    top: -2%;
-    transform: translateX(-11%) rotate(25deg);
+    top: -8%;
+    --of-base: translateX(-11%) rotate(25deg);
+    transform: var(--of-base);
   }
 
   .overlay-flower--br {
-    bottom: 35%;
-    transform: translateX(11%) scaleX(-1) rotate(-25deg);
+    bottom: 28%;
+    --of-base: translateX(11%) scaleX(-1) rotate(-25deg);
+    transform: var(--of-base);
   }
 }
 
@@ -2494,14 +2660,34 @@ a {
   }
 }
 
+.fall-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fall-layer .heart {
+  z-index: 1;
+}
+
+body.is-opening .overlay-flower {
+  animation: overlayFlowerLift 1.6s ease forwards;
+}
+
+body.is-opening .seal {
+  animation: sealLift 1.6s ease forwards;
+}
+
+body.is-opening .hearts .heart {
+  animation: overlayHeartLift 1.5s ease forwards;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .float,
-  .envelope-photo,
   .seal,
   .shine,
-  .heart,
   .sparkle,
-  .gift-front,
   .music-btn.is-playing .music-disc {
     animation: none !important;
   }

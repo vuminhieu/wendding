@@ -7,11 +7,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600&family=Great+Vibes&family=Lora:wght@300;400;600&family=Ms+Madi&family=The+Nautigal:wght@400&family=Uchen&family=Viaoda+Libre&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/invitation.css?v=script11">
+  <link rel="stylesheet" href="css/invitation.css?v=script22">
   <link rel="preload" as="image" href="assets/photos/hero.webp">
   <link rel="preload" as="image" href="assets/photos/full/02.webp">
 </head>
-<body>
+<body class="await-open">
   <div class="page-bg" aria-hidden="true">
     <img src="assets/photos/full/02.webp" alt="" decoding="async">
   </div>
@@ -25,10 +25,9 @@
         <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
       </div>
       <div class="overlay-shadow">
-        <div class="overlay-sheet">
-          <img class="overlay-flower overlay-flower--tl" src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
-          <img class="overlay-flower overlay-flower--br" src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
-        </div>
+        <div class="overlay-sheet"></div>
+        <img class="overlay-flower overlay-flower--tl" src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
+        <img class="overlay-flower overlay-flower--br" src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
         <div class="overlay-body">
           <h1 class="overlay-names">
             <span><span class="name-cap">M</span>inh Hiếu</span>
@@ -51,6 +50,7 @@
       </div>
     </div>
   </div>
+  <div class="fall-layer" id="page-falls" aria-hidden="true"></div>
 
   <div class="invitation" id="invitation">
     <header class="header">
@@ -164,7 +164,10 @@ TƯ GIA</div>
           <h2 class="paper-h2"><span>THÔNG TIN TIỆC CƯỚI</span></h2>
           <div class="banquet-meta" data-landing-screenshot-id="invite-reception">
             <h3 class="banquet-lead">Tiệc nhà trai</h3>
-            <div class="time-row time-row--banquet"><span>THỨ BẢY</span><span>16:00</span></div>
+            <div class="banquet-when">
+              <span class="time-weekday">Thứ bảy</span>
+              <span class="time-clock">16:00</span>
+            </div>
             <div class="date-block">
               <span class="day-num">24</span>
               <div class="date-rule"></div>
@@ -195,15 +198,17 @@ TƯ GIA</div>
     <div class="section-bleed">
       <img class="castle venue-castle" src="assets/theme/castle-background.webp" alt="" aria-hidden="true">
       <section class="venue" data-landing-screenshot-id="invite-map">
-        <div>
+        <div class="venue-copy">
           <h3 class="venue-title">Tiệc nhà trai tổ chức tại</h3>
           <div class="venue-addr">Tư gia, Thôn Phong Lẫm Đông, Xã Nam Thụy Anh, Tỉnh Hưng Yên</div>
         </div>
-        <iframe class="venue-map" title="Bản đồ tư gia Nam Thụy Anh" src="https://maps.google.com/maps?q=Th%C3%B4n%20Phong%20L%E1%BA%ABm%20%C4%90%C3%B4ng%2C%20X%C3%A3%20Nam%20Th%E1%BB%A5y%20Anh%2C%20H%C6%B0ng%20Y%C3%AAn&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Th%C3%B4n%20Phong%20L%E1%BA%ABm%20%C4%90%C3%B4ng%2C%20X%C3%A3%20Nam%20Th%E1%BB%A5y%20Anh%2C%20H%C6%B0ng%20Y%C3%AAn" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-          <span>Chỉ đường</span>
-        </a>
+        <div class="venue-card">
+          <iframe class="venue-map" title="Bản đồ tư gia Nam Thụy Anh" src="https://maps.google.com/maps?q=Th%C3%B4n%20Phong%20L%E1%BA%ABm%20%C4%90%C3%B4ng%2C%20X%C3%A3%20Nam%20Th%E1%BB%A5y%20Anh%2C%20H%C6%B0ng%20Y%C3%AAn&amp;output=embed" loading="lazy" tabindex="-1" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Th%C3%B4n%20Phong%20L%E1%BA%ABm%20%C4%90%C3%B4ng%2C%20X%C3%A3%20Nam%20Th%E1%BB%A5y%20Anh%2C%20H%C6%B0ng%20Y%C3%AAn" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+            <span>Chỉ đường</span>
+          </a>
+        </div>
       </section>
     </div>
 
@@ -218,7 +223,10 @@ TƯ GIA</div>
           <h2 class="paper-h2"><span>THÔNG TIN TIỆC CƯỚI</span></h2>
           <div class="banquet-meta">
             <h3 class="banquet-lead">Tiệc nhà gái</h3>
-            <div class="time-row time-row--banquet"><span>CHỦ NHẬT</span><span>08:00</span></div>
+            <div class="banquet-when">
+              <span class="time-weekday">Chủ nhật</span>
+              <span class="time-clock">08:00</span>
+            </div>
             <div class="date-block">
               <span class="day-num">25</span>
               <div class="date-rule"></div>
@@ -246,29 +254,18 @@ TƯ GIA</div>
     <div class="section-bleed">
       <img class="castle venue-castle" src="assets/theme/castle-background.webp" alt="" aria-hidden="true">
       <section class="venue">
-        <div>
+        <div class="venue-copy">
           <h3 class="venue-title">Tiệc nhà gái tổ chức tại</h3>
           <div class="venue-addr">Tư gia, Thôn Vĩnh Ninh, Xã Hà Đông, Hải Phòng</div>
         </div>
-        <iframe class="venue-map" title="Bản đồ tư gia Hà Đông" src="https://maps.google.com/maps?q=Th%C3%B4n%20V%C4%A9nh%20Ninh%2C%20X%C3%A3%20H%C3%A0%20%C4%90%C3%B4ng%2C%20H%E1%BA%A3i%20Ph%C3%B2ng&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-        <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Th%C3%B4n%20V%C4%A9nh%20Ninh%2C%20X%C3%A3%20H%C3%A0%20%C4%90%C3%B4ng%2C%20H%E1%BA%A3i%20Ph%C3%B2ng" target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
-          <span>Chỉ đường</span>
-        </a>
+        <div class="venue-card">
+          <iframe class="venue-map" title="Bản đồ tư gia Hà Đông" src="https://maps.google.com/maps?q=Th%C3%B4n%20V%C4%A9nh%20Ninh%2C%20X%C3%A3%20H%C3%A0%20%C4%90%C3%B4ng%2C%20H%E1%BA%A3i%20Ph%C3%B2ng&amp;output=embed" loading="lazy" tabindex="-1" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          <a class="dir" href="https://www.google.com/maps/dir/?api=1&amp;destination=Th%C3%B4n%20V%C4%A9nh%20Ninh%2C%20X%C3%A3%20H%C3%A0%20%C4%90%C3%B4ng%2C%20H%E1%BA%A3i%20Ph%C3%B2ng" target="_blank" rel="noopener noreferrer">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+            <span>Chỉ đường</span>
+          </a>
+        </div>
       </section>
-    </div>
-
-    <div class="dress">
-      <div>
-        <h2 class="cream-h2 dress-h2">DRESS CODE</h2>
-        <p class="dress-sub">Trang phục dự tiệc</p>
-      </div>
-      <ul class="swatches">
-        <li class="swatch" style="background:#511419" title="Đỏ đô"></li>
-        <li class="swatch" style="background:#8C3A3F" title="Đỏ rượu"></li>
-        <li class="swatch" style="background:#C9A24A" title="Vàng"></li>
-        <li class="swatch swatch--cream" style="background:#ECE4D8" title="Kem"></li>
-      </ul>
     </div>
 
     <section class="paper-wrap paper-wrap--timeline">
@@ -282,29 +279,24 @@ TƯ GIA</div>
           <h2 class="paper-h2 timeline-h2">LỊCH TRÌNH NGÀY CƯỚI</h2>
           <ol class="timeline">
             <li class="tl-item">
-              <span class="tl-time">15:30</span>
+              <span class="tl-time">09:00</span>
               <span class="tl-axis" aria-hidden="true"><span class="tl-line tl-line--first"></span><span class="tl-dot"></span></span>
-              <span class="tl-label">Đón khách</span>
+              <span class="tl-label">Đón dâu</span>
             </li>
             <li class="tl-item">
-              <span class="tl-time"><span class="tl-time-inner"><span class="tl-icon"><img src="assets/theme/camera.webp" alt=""></span>16:00</span></span>
+              <span class="tl-time"><span class="tl-time-inner"><span class="tl-icon"><img src="assets/theme/cake.webp" alt=""></span>10:00</span></span>
               <span class="tl-axis" aria-hidden="true"><span class="tl-line tl-line--mid"></span><span class="tl-dot"></span></span>
-              <span class="tl-label">Khai tiệc</span>
+              <span class="tl-label">Lễ vu quy</span>
             </li>
             <li class="tl-item">
-              <span class="tl-time"><span class="tl-time-inner"><span class="tl-icon"><img src="assets/theme/cake.webp" alt=""></span>16:30</span></span>
+              <span class="tl-time"><span class="tl-time-inner"><span class="tl-icon"><img src="assets/theme/camera.webp" alt=""></span>10:55</span></span>
               <span class="tl-axis" aria-hidden="true"><span class="tl-line tl-line--mid"></span><span class="tl-dot"></span></span>
-              <span class="tl-label">Nghi thức cưới</span>
+              <span class="tl-label">Hồi hương</span>
             </li>
             <li class="tl-item">
-              <span class="tl-time"><span class="tl-time-inner"><span class="tl-icon"><img src="assets/theme/cook.webp" alt=""></span>17:00</span></span>
-              <span class="tl-axis" aria-hidden="true"><span class="tl-line tl-line--mid"></span><span class="tl-dot"></span></span>
-              <span class="tl-label">Cắt bánh &amp; nâng ly</span>
-            </li>
-            <li class="tl-item">
-              <span class="tl-time">18:30</span>
+              <span class="tl-time">12:00</span>
               <span class="tl-axis" aria-hidden="true"><span class="tl-line tl-line--last"></span><span class="tl-dot"></span></span>
-              <span class="tl-label">Kết thúc tiệc</span>
+              <span class="tl-label">Lễ thành hôn</span>
             </li>
           </ol>
         </div>
@@ -436,6 +428,6 @@ TƯ GIA</div>
 
   <div class="toast" id="toast" role="status"></div>
   <style>.visually-hidden{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}</style>
-  <script src="js/invitation.js?v=guest2"></script>
+  <script src="js/invitation.js?v=guest6"></script>
 </body>
 </html>

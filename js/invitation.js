@@ -62,20 +62,19 @@
     setTimeout(() => toast.classList.remove("is-on"), 2200);
   }
 
-  function spawnHearts() {
-    const root = document.getElementById("hearts");
+  function spawnHearts(root, n) {
+    if (!root) return;
     const colors = ["#a8323b", "#ece4d8", "#c9a24a", "#7a1f26"];
-    const n = 12;
     for (let i = 0; i < n; i++) {
       const el = document.createElement("div");
       el.className = "heart";
-      const size = 12 + Math.random() * 12;
-      const sway = (Math.random() * 60 - 30).toFixed(2);
-      el.style.left = `${Math.random() * 92}%`;
+      const size = 12 + Math.random() * 14;
+      const sway = (Math.random() * 72 - 36).toFixed(2);
+      el.style.left = `${Math.random() * 94}%`;
       el.style.color = colors[i % colors.length];
       el.style.fontSize = `${size}px`;
       el.style.setProperty("--sway", `${sway}px`);
-      el.style.setProperty("--dur", `${18 + Math.random() * 8}s`);
+      el.style.setProperty("--dur", `${16 + Math.random() * 10}s`);
       el.style.setProperty("--delay", `${-Math.random() * 24}s`);
       el.innerHTML = '<svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>';
       root.appendChild(el);
@@ -99,7 +98,9 @@
   }
 
   function openInvite() {
-    if (overlay.hidden || overlay.classList.contains("is-leaving")) return;
+    if (!document.body.classList.contains("await-open") || document.body.classList.contains("is-opening")) return;
+    document.body.classList.remove("await-open");
+    document.body.classList.add("is-opening");
     overlay.classList.add("is-leaving");
     playMusic();
     let closed = false;
@@ -108,10 +109,14 @@
       closed = true;
       overlay.hidden = true;
       overlay.classList.remove("is-leaving");
+      document.body.classList.remove("is-opening");
+      document.body.classList.add("is-opened");
       startAlbumAutoplay(900);
     };
-    overlay.addEventListener("transitionend", done, { once: true });
-    setTimeout(done, 800);
+    overlay.addEventListener("transitionend", (e) => {
+      if (e.target === overlay) done();
+    });
+    setTimeout(done, 1700);
     const url = new URL(location.href);
     url.searchParams.set("open", "1");
     history.replaceState({}, "", url);
@@ -430,7 +435,8 @@
       .replace(/"/g, "&quot;");
   }
 
-  spawnHearts();
+  spawnHearts(document.getElementById("hearts"), 32);
+  spawnHearts(document.getElementById("page-falls"), 28);
   buildCalendar("calendar-grid-groom", 24);
   buildCalendar("calendar-grid-bride", 25);
   renderAlbum();
@@ -438,6 +444,8 @@
   renderWishes();
 
   if (alreadyOpen) {
+    document.body.classList.remove("await-open", "is-opening");
+    document.body.classList.add("is-opened");
     overlay.hidden = true;
     playMusic();
     startAlbumAutoplay();
