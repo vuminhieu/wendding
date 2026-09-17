@@ -75,9 +75,8 @@
         el.className = "heart heart--float";
         el.style.left = `${4 + Math.random() * 90}%`;
         el.style.top = `${6 + Math.random() * 84}%`;
-        el.style.setProperty("--sway", `${(Math.random() * 18 - 9).toFixed(1)}px`);
-        el.style.animationDuration = `${4.8 + Math.random() * 2.4}s`;
-        el.style.animationDelay = `${(-Math.random() * 5).toFixed(2)}s`;
+        el.style.setProperty("--bob-dur", `${4.6 + Math.random() * 1.6}s`);
+        el.style.setProperty("--bob-delay", `${(-Math.random() * 4.8).toFixed(2)}s`);
       } else {
         el.className = "heart";
         el.style.left = `${Math.random() * 94}%`;

@@ -1713,7 +1713,13 @@ a {
 
 .heart--float {
   top: auto;
-  animation: overlayHeartFloat 5.6s ease-in-out infinite;
+  animation: none;
+}
+
+.heart--float svg {
+  display: block;
+  animation: overlayHeartFloat var(--bob-dur, 5.2s) ease-in-out var(--bob-delay, 0s) infinite;
+  will-change: transform;
 }
 
 .overlay-card-wrap {
@@ -1906,15 +1912,15 @@ a {
   box-shadow: 0 4px 14px rgba(81, 20, 25, 0.35);
   cursor: pointer;
   user-select: none;
-  animation: openBtnPulse 2.2s ease-in-out infinite;
+  animation: openBtnPulse 1.6s ease-in-out infinite;
   will-change: transform, box-shadow;
 }
 
 .open-btn:hover,
 .open-btn:focus-visible {
   animation: none;
-  transform: scale(1.06);
-  box-shadow: 0 8px 22px rgba(81, 20, 25, 0.5);
+  transform: translateY(-3px) scale(1.08);
+  box-shadow: 0 10px 26px rgba(81, 20, 25, 0.55);
 }
 
 .shine {
@@ -2263,7 +2269,7 @@ a {
     transform: var(--of-base) translateY(0);
   }
   50% {
-    transform: var(--of-base) translateY(-12px);
+    transform: var(--of-base) translateY(-22px);
   }
 }
 
@@ -2277,12 +2283,10 @@ a {
 @keyframes overlayHeartFloat {
   0%,
   100% {
-    transform: translate3d(0, 0, 0);
-    opacity: 0.92;
+    transform: translateY(0);
   }
   50% {
-    transform: translate3d(var(--sway, 8px), -18px, 0);
-    opacity: 1;
+    transform: translateY(-22px);
   }
 }
 
@@ -2299,12 +2303,12 @@ a {
 @keyframes openBtnPulse {
   0%,
   100% {
-    transform: scale(1);
+    transform: translateY(0) scale(1);
     box-shadow: 0 4px 14px rgba(81, 20, 25, 0.35);
   }
   50% {
-    transform: scale(1.07);
-    box-shadow: 0 10px 24px rgba(81, 20, 25, 0.48);
+    transform: translateY(-6px) scale(1.1);
+    box-shadow: 0 12px 28px rgba(81, 20, 25, 0.55);
   }
 }
 
