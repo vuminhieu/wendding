@@ -445,10 +445,13 @@ a {
   padding: 36px 20px 40px;
   text-align: center;
   box-shadow: var(--shadow-paper);
+  animation: paperBob 5.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .paper--ceremony {
   border-radius: 13px;
+  animation-duration: 5.6s;
 }
 
 .paper--banquet,
@@ -458,6 +461,14 @@ a {
 
 .paper--banquet {
   padding: 36px 20px;
+  animation-duration: 6.2s;
+  animation-delay: 0.35s;
+}
+
+.paper-wrap--banquet + .section-bleed + .paper-wrap--banquet .paper--banquet {
+  animation-duration: 6.6s;
+  animation-delay: 0.7s;
+  animation-direction: reverse;
 }
 
 .paper--timeline {
@@ -2315,6 +2326,16 @@ a {
 
 .toast.is-on {
   opacity: 1;
+}
+
+@keyframes paperBob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-16px);
+  }
 }
 
 @keyframes drFloat {
