@@ -56,6 +56,68 @@
 
   applyGuestName(sanitizeGuestName(params.get("to")));
 
+  const WEDDING_DAY = Date.parse("2026-10-25T00:00:00+07:00");
+  const THANKS_DAY = Date.parse("2026-10-26T00:00:00+07:00");
+
+  function pad2(n) {
+    return String(n).padStart(2, "0");
+  }
+
+  function renderCountdown() {
+    const cells = document.getElementById("countdown-cells");
+    const done = document.getElementById("countdown-done");
+    const live = document.getElementById("countdown-live");
+    if (!cells || !done) return false;
+
+    const now = Date.now();
+    if (now >= WEDDING_DAY) {
+      const label = document.querySelector("#countdown .countdown-label");
+      if (label) label.hidden = true;
+      cells.hidden = true;
+      done.hidden = false;
+      done.textContent = now >= THANKS_DAY
+        ? "Trân trọng cảm ơn"
+        : "Hôm nay là ngày cưới";
+      if (live) live.textContent = done.textContent;
+      return false;
+    }
+
+    let ms = WEDDING_DAY - now;
+    const days = Math.floor(ms / 86400000);
+    ms %= 86400000;
+    const hours = Math.floor(ms / 3600000);
+    ms %= 3600000;
+    const mins = Math.floor(ms / 60000);
+    ms %= 60000;
+    const secs = Math.floor(ms / 1000);
+
+    document.getElementById("cd-days").textContent = String(days);
+    document.getElementById("cd-hours").textContent = pad2(hours);
+    document.getElementById("cd-mins").textContent = pad2(mins);
+    document.getElementById("cd-secs").textContent = pad2(secs);
+
+    const summary = `Còn ${days} ngày ${hours} giờ`;
+    if (live && live.dataset.summary !== summary) {
+      live.dataset.summary = summary;
+      live.textContent = summary;
+    }
+    return true;
+  }
+
+  function startCountdown() {
+    if (!renderCountdown()) return;
+    const id = setInterval(() => {
+      if (document.hidden) return;
+      if (!renderCountdown()) clearInterval(id);
+    }, 1000);
+    document.addEventListener("visibilitychange", () => {
+      if (document.hidden) return;
+      if (!renderCountdown()) clearInterval(id);
+    });
+  }
+
+  startCountdown();
+
   function showToast(msg) {
     toast.textContent = msg;
     toast.classList.add("is-on");

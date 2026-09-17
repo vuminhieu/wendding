@@ -1,6 +1,6 @@
 # Minimalism Đỏ Đậm — Design System
 
-Source: live `getComputedStyle` on [chungdoi.com Minimalism Đỏ Đậm demo](https://chungdoi.com/vi/mau-thiep/minimalism-do-dam/demo?open=1), Chrome DevTools page 2, viewport 929×861, invitation scrollHeight 6251. Tokens live in `reports/extract.json`. Do not use site `:root` `--font-primary: Pattaya` / `--font-secondary: Roboto` for invitation type. No live countdown. Do not ship Maps API keys. Download theme/photo/audio locally; do not hotlink.
+Source: live `getComputedStyle` on [chungdoi.com Minimalism Đỏ Đậm demo](https://chungdoi.com/vi/mau-thiep/minimalism-do-dam/demo?open=1), Chrome DevTools page 2, viewport 929×861, invitation scrollHeight 6251. Tokens live in `reports/extract.json`. Do not use site `:root` `--font-primary: Pattaya` / `--font-secondary: Roboto` for invitation type. Hero cream 4-cell countdown to `00:00 25/10/2026 +07` is an intentional exception (not on overlay, not a second event clock). Do not ship Maps API keys. Download theme/photo/audio locally; do not hotlink.
 
 ## 1. Atmosphere & Identity
 
@@ -9,7 +9,7 @@ A closed-then-opened paper invitation on warm cream, not a SaaS landing page. Th
 Taste / anti-patterns:
 - Do not flatten paper into a solid hex card. Fill + multiply texture + radius + offset shadow is the material.
 - Do not substitute Inter, Roboto, Pattaya, or generic script for the seven invitation faces.
-- Do not add a countdown clock; `03` is the ceremony/banquet day numeral.
+- Ceremony/banquet day numerals are dates, not timers. Exception: cream 4-cell under hero names to `00:00 25/10/2026 +07` only — no overlay, FAB, or 24/10 clock.
 - Do not use emoji, glassmorphism, purple gradients, or rounded-2xl-on-everything.
 - Do not invent extra gold besides sparkles (`#B58B2F`) and the dress-code gold swatch (`#C9A24A`).
 - Animate transform/opacity only. Envelope hint pulse is the only looping decorative motion besides the playing music disc.
@@ -176,9 +176,15 @@ Vanilla HTML/CSS/JS primitives. No React.
 
 ### DateBlock
 
-- **Structure**: weekday + 46px Times `03` + month/year + lunar line. Not a countdown.
+- **Structure**: weekday + 46px Times day numeral + month/year + lunar line. Static date, not a timer.
 - **States**: static.
-- **Accessibility**: the numeral is text “03”, not `role="timer"`.
+- **Accessibility**: the numeral is text (e.g. “25”), not `role="timer"`. Live remaining time lives in a separate hero `#countdown` module.
+
+### HeroCountdown
+
+- **Structure**: label `Còn tới ngày cưới` + 4 cream cells (Ngày · Giờ · Phút · Giây) under `#hero-invite`. Target `2026-10-25T00:00:00+07:00`. After midnight 25/10: hide cells, show `Hôm nay là ngày cưới`; from 26/10 00:00 +07: `Trân trọng cảm ơn`.
+- **Typography**: Times numerals ~28–32px `tabular-nums` `--ink-burgundy`; Baskerville/Times labels 11–12px muted.
+- **States**: ticking; done (blessing). No cell pulse. `prefers-reduced-motion` does not freeze numbers.
 
 ### Calendar
 
@@ -252,7 +258,7 @@ Source recorded 46 keyframes. Clone only the motions that are visible: hint puls
 - Only animate `transform` and `opacity`.
 - Hover + focus + active on submit, FAB, gift CTA, envelope open.
 - `prefers-reduced-motion: reduce` → no pulse, no spin, no hover scale; envelope jumps to open.
-- No countdown tick.
+- No CSS tick/pulse on the ceremony day numeral. Hero `#countdown` may update numbers via JS every 1s.
 
 ## 7. Depth & Surface
 
