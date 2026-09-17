@@ -19,6 +19,7 @@
   --font-overline: "Cormorant Garamond", "Times New Roman", serif;
   --font-display: "Viaoda Libre", "The Nautigal", cursive;
   --font-script-hero: "The Nautigal", cursive;
+  --font-script-overlay: "Allura", "Great Vibes", "The Nautigal", cursive;
   --font-script-inner: "Ms Madi", cursive;
   --font-title: "Times New Roman", Times, serif;
   --font-body: Baskerville, "Times New Roman", serif;
@@ -278,10 +279,10 @@ a {
 
 .hero-name {
   margin: 0;
-  font-family: var(--font-display);
-  font-size: clamp(38px, 11vw, 46px);
-  font-weight: 300;
-  line-height: 0.92;
+  font-family: var(--font-script-overlay);
+  font-size: clamp(42px, 12vw, 52px);
+  font-weight: 400;
+  line-height: 1.08;
   color: var(--ink-burgundy);
 }
 
@@ -485,10 +486,10 @@ a {
   width: auto;
   min-height: 0;
   display: block;
-  font-family: var(--font-display);
-  font-size: clamp(28px, 9vw, 46px);
+  font-family: var(--font-script-overlay);
+  font-size: clamp(42px, 12vw, 52px);
   font-weight: 400;
-  line-height: 1;
+  line-height: 1.08;
   white-space: nowrap;
   color: var(--ink-cream);
 }
@@ -508,10 +509,10 @@ a {
   align-items: center;
   justify-content: center;
   height: 28px;
-  margin: 8px 0;
-  font-family: var(--font-script-inner);
+  margin: 4px 0;
+  font-family: var(--font-script-overlay);
   font-size: 32px;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1;
   color: var(--ink-cream);
 }
@@ -1712,17 +1713,26 @@ a {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: var(--font-display);
-  font-size: 30px;
+  font-family: var(--font-script-overlay);
+  font-size: 42px;
   font-weight: 400;
-  line-height: 1.15;
+  line-height: 1.05;
   color: var(--ink-burgundy);
 }
 
 .overlay-amp {
-  font-family: var(--font-body);
-  font-size: 18px;
-  line-height: 1;
+  font-family: var(--font-script-overlay);
+  font-size: 28px;
+  line-height: 0.7;
+  margin: 2px 0;
+}
+
+.name-cap {
+  display: inline-block;
+  font-size: 1.42em;
+  line-height: 0.78;
+  vertical-align: -0.14em;
+  margin-right: 0.01em;
 }
 
 .ornament {
@@ -2227,7 +2237,7 @@ a {
   }
 
   .hero-name {
-    font-size: 58px;
+    font-size: 56px;
   }
 
   .hero-amp {
@@ -2245,12 +2255,13 @@ a {
   }
 
   .couple-name {
-    line-height: 1;
+    font-size: 56px;
+    line-height: 1.08;
   }
 
   .inner-amp {
     height: 32px;
-    margin: 10px 0;
+    margin: 6px 0;
     font-size: 36px;
   }
 
@@ -2416,11 +2427,11 @@ a {
   }
 
   .overlay-names {
-    font-size: 36px;
+    font-size: 52px;
   }
 
   .overlay-amp {
-    font-size: 20px;
+    font-size: 34px;
   }
 
   .overlay-flower {
