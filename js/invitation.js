@@ -1,13 +1,7 @@
 (() => {
-  const PHOTOS = [
-    "assets/photos/01.jpg",
-    "assets/photos/02.jpg",
-    "assets/photos/03.jpg",
-    "assets/photos/04.jpg",
-    "assets/photos/05.jpg",
-    "assets/photos/06.jpg",
-    "assets/photos/07.jpg"
-  ];
+  const PHOTO_IDS = ["01", "02", "03", "04", "05", "06", "07"];
+  const PHOTOS_CARD = PHOTO_IDS.map((id) => `assets/photos/card/${id}.webp`);
+  const PHOTOS_FULL = PHOTO_IDS.map((id) => `assets/photos/full/${id}.webp`);
 
   const WISH_SEED = [
     ["Duy Khang", "Chúc mừng ngày vui của hai bạn, trăm năm hạnh phúc bền lâu!"],
@@ -139,46 +133,62 @@
     };
   }
 
-  function renderAlbum() {
+  function applyAlbumTransforms() {
     const fan = document.getElementById("album-fan");
     const dots = document.getElementById("album-dots");
-    fan.innerHTML = "";
-    dots.innerHTML = "";
-    PHOTOS.forEach((src, i) => {
-      const btn = document.createElement("button");
-      btn.type = "button";
-      btn.className = "album-card";
-      btn.innerHTML = `<img src="${src}" alt="Wedding photo ${i + 1}">`;
-      const offset = i - albumIndex;
-      const t = fanTransform(offset, PHOTOS.length);
+    const n = PHOTO_IDS.length;
+    [...fan.children].forEach((btn, i) => {
+      const t = fanTransform(i - albumIndex, n);
       btn.style.transform = t.transform;
       btn.style.opacity = String(t.opacity);
       btn.style.zIndex = String(t.z);
-      if (i === albumIndex) btn.style.boxShadow = "0 20px 25px -5px rgba(0,0,0,0.15)";
-      btn.addEventListener("click", () => {
-        if (i === albumIndex) openLightbox(i);
-        else {
-          albumIndex = i;
-          renderAlbum();
-        }
-      });
-      fan.appendChild(btn);
-
-      const dot = document.createElement("button");
-      dot.type = "button";
-      dot.className = "album-dot" + (i === albumIndex ? " is-active" : "");
-      dot.setAttribute("aria-label", `Go to photo ${i + 1}`);
-      dot.addEventListener("click", () => {
-        albumIndex = i;
-        renderAlbum();
-      });
-      dots.appendChild(dot);
+      btn.style.boxShadow = i === albumIndex ? "0 20px 25px -5px rgba(0,0,0,0.15)" : "";
+    });
+    [...dots.children].forEach((dot, i) => {
+      dot.classList.toggle("is-active", i === albumIndex);
     });
   }
 
+  function renderAlbum() {
+    const fan = document.getElementById("album-fan");
+    const dots = document.getElementById("album-dots");
+    if (fan.childElementCount === 0) {
+      PHOTO_IDS.forEach((_, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "album-card";
+        const img = document.createElement("img");
+        img.src = PHOTOS_CARD[i];
+        img.alt = `Wedding photo ${i + 1}`;
+        img.decoding = "async";
+        img.loading = i === 0 ? "eager" : "lazy";
+        btn.appendChild(img);
+        btn.addEventListener("click", () => {
+          if (i === albumIndex) openLightbox(i);
+          else {
+            albumIndex = i;
+            applyAlbumTransforms();
+          }
+        });
+        fan.appendChild(btn);
+
+        const dot = document.createElement("button");
+        dot.type = "button";
+        dot.className = "album-dot";
+        dot.setAttribute("aria-label", `Go to photo ${i + 1}`);
+        dot.addEventListener("click", () => {
+          albumIndex = i;
+          applyAlbumTransforms();
+        });
+        dots.appendChild(dot);
+      });
+    }
+    applyAlbumTransforms();
+  }
+
   function stepAlbum(dir) {
-    albumIndex = (albumIndex + dir + PHOTOS.length) % PHOTOS.length;
-    renderAlbum();
+    albumIndex = (albumIndex + dir + PHOTO_IDS.length) % PHOTO_IDS.length;
+    applyAlbumTransforms();
   }
 
   let lbIndex = 0;
@@ -187,10 +197,25 @@
   const lbCount = document.getElementById("lb-count");
   const lbThumbs = document.getElementById("lb-thumbs");
 
+  function prefetchFull(src) {
+    const img = new Image();
+    img.src = src;
+  }
+
+  function prefetchNeighbor(i) {
+    const n = PHOTO_IDS.length;
+    const run = () => {
+      prefetchFull(PHOTOS_FULL[(i + 1) % n]);
+      prefetchFull(PHOTOS_FULL[(i - 1 + n) % n]);
+    };
+    if ("requestIdleCallback" in window) requestIdleCallback(run, { timeout: 2000 });
+    else setTimeout(run, 200);
+  }
+
   function renderLb() {
-    lbImg.src = PHOTOS[lbIndex];
+    lbImg.src = PHOTOS_FULL[lbIndex];
     lbImg.alt = `Ảnh cưới ${lbIndex + 1}`;
-    lbCount.textContent = `${lbIndex + 1} / ${PHOTOS.length}`;
+    lbCount.textContent = `${lbIndex + 1} / ${PHOTO_IDS.length}`;
     [...lbThumbs.children].forEach((el, i) => {
       el.classList.toggle("is-active", i === lbIndex);
     });
@@ -200,17 +225,24 @@
     lbIndex = i;
     renderLb();
     lightbox.showModal();
+    prefetchNeighbor(lbIndex);
   }
 
   function buildThumbs() {
-    PHOTOS.forEach((src, i) => {
+    PHOTOS_CARD.forEach((src, i) => {
       const b = document.createElement("button");
       b.type = "button";
-      b.innerHTML = `<img src="${src}" alt="Thumbnail ${i + 1}">`;
+      const img = document.createElement("img");
+      img.src = src;
+      img.alt = `Thumbnail ${i + 1}`;
+      img.loading = "lazy";
+      img.decoding = "async";
+      b.appendChild(img);
       if (i === 0) b.classList.add("is-active");
       b.addEventListener("click", () => {
         lbIndex = i;
         renderLb();
+        prefetchNeighbor(lbIndex);
       });
       lbThumbs.appendChild(b);
     });
@@ -299,12 +331,14 @@
     });
   }
   document.getElementById("lb-prev").addEventListener("click", () => {
-    lbIndex = (lbIndex - 1 + PHOTOS.length) % PHOTOS.length;
+    lbIndex = (lbIndex - 1 + PHOTO_IDS.length) % PHOTO_IDS.length;
     renderLb();
+    prefetchNeighbor(lbIndex);
   });
   document.getElementById("lb-next").addEventListener("click", () => {
-    lbIndex = (lbIndex + 1) % PHOTOS.length;
+    lbIndex = (lbIndex + 1) % PHOTO_IDS.length;
     renderLb();
+    prefetchNeighbor(lbIndex);
   });
 
   document.getElementById("gift-open").addEventListener("click", () => {

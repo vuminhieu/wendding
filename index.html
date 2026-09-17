@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Lora:wght@300;400;600&family=Ms+Madi&family=The+Nautigal:wght@400&family=Uchen&family=Viaoda+Libre&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/invitation.css">
+  <link rel="preload" as="image" href="assets/photos/hero.webp">
 </head>
 <body>
   <div class="overlay" id="overlay" data-landing-screenshot-id="invite-envelope">
@@ -52,7 +53,7 @@
           <img class="envelope-bg" src="assets/theme/envelope-background.webp" alt="" aria-hidden="true">
           <div class="envelope-photo">
             <div class="envelope-photo-frame">
-              <img src="assets/photos/hero.jpg" alt="">
+              <img src="assets/photos/hero.webp" alt="" width="221" height="309" fetchpriority="high" decoding="async">
             </div>
           </div>
           <span class="flower-float hero-flower" aria-hidden="true">
@@ -352,7 +353,7 @@ TƯ GIA</div>
       <div class="lightbox-count" id="lb-count">1 / 7</div>
       <div class="lightbox-stage">
         <button type="button" class="lb-nav lb-nav--prev" id="lb-prev" aria-label="Previous image">‹</button>
-        <img id="lb-img" src="assets/photos/01.jpg" alt="Ảnh cưới 1">
+        <img id="lb-img" alt="Ảnh cưới 1">
         <button type="button" class="lb-nav lb-nav--next" id="lb-next" aria-label="Next image">›</button>
       </div>
       <div class="lightbox-thumbs" id="lb-thumbs"></div>
