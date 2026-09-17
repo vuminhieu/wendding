@@ -82,6 +82,7 @@
       closed = true;
       overlay.hidden = true;
       overlay.classList.remove("is-leaving");
+      startAlbumAutoplay(900);
     };
     overlay.addEventListener("transitionend", done, { once: true });
     setTimeout(done, 800);
@@ -90,8 +91,9 @@
     history.replaceState({}, "", url);
   }
 
-  function buildCalendar() {
-    const grid = document.getElementById("calendar-grid");
+  function buildCalendar(gridId, heartDay) {
+    const grid = document.getElementById(gridId);
+    if (!grid) return;
     const firstWeekday = new Date(2026, 9, 1).getDay();
     const offset = firstWeekday === 0 ? 6 : firstWeekday - 1;
     for (let i = 0; i < offset; i++) {
@@ -100,8 +102,8 @@
     for (let d = 1; d <= 31; d++) {
       const cell = document.createElement("div");
       cell.className = "cal-cell";
-      if (d === 24) {
-        cell.innerHTML = '<div class="cal-heart" aria-label="24"><svg viewBox="0 0 24 22" fill="#511419"><path d="M12 21C12 21 1.5 13.5 1.5 7.5C1.5 4.46 3.96 2 7 2C8.76 2 10.35 2.81 11.4 4.09L12 4.8L12.6 4.09C13.65 2.81 15.24 2 17 2C20.04 2 22.5 4.46 22.5 7.5C22.5 13.5 12 21 12 21Z"></path></svg><span>24</span></div>';
+      if (d === heartDay) {
+        cell.innerHTML = `<div class="cal-heart" aria-label="${d}"><svg viewBox="0 0 24 22" fill="#511419"><path d="M12 21C12 21 1.5 13.5 1.5 7.5C1.5 4.46 3.96 2 7 2C8.76 2 10.35 2.81 11.4 4.09L12 4.8L12.6 4.09C13.65 2.81 15.24 2 17 2C20.04 2 22.5 4.46 22.5 7.5C22.5 13.5 12 21 12 21Z"></path></svg><span>${d}</span></div>`;
       } else {
         cell.innerHTML = `<span>${d}</span>`;
       }
@@ -109,44 +111,121 @@
     }
   }
 
-  let albumIndex = 0;
+  let albumPos = 0;
+  let albumTimer = null;
+  let albumRaf = 0;
+  let albumAnim = null;
+  let albumDragging = false;
+  let albumLock = null;
+  const ALBUM_DURATION = 680;
+  const ALBUM_INTERVAL = 3000;
 
-  function fanTransform(offset, n) {
-    const half = Math.floor(n / 2);
-    let o = offset;
-    if (o > half) o -= n;
-    if (o < -half) o += n;
-    const abs = Math.abs(o);
-    if (abs > 3) {
-      return { transform: "translateX(0) translateZ(-600px) scale(0.5)", opacity: 0, z: 90 - abs };
-    }
-    const x = o * 60;
-    const z = -Math.abs(o) * 150;
-    const rot = o * 45;
-    const scale = o === 0 ? 1 : abs === 1 ? 0.85 : 0.7;
-    const opacity = o === 0 ? 1 : abs === 1 ? 0.75 : abs === 2 ? 0.5 : 0.3;
-    const zIndex = 100 - abs;
-    return {
-      transform: `translateX(${x}%) translateZ(${z}px) rotateY(${rot}deg) scale(${scale})`,
-      opacity,
-      z: zIndex
-    };
+  function albumCount() {
+    return PHOTO_IDS.length;
   }
 
-  function applyAlbumTransforms() {
+  function wrapDelta(offset, n) {
+    let o = offset;
+    const half = n / 2;
+    while (o > half) o -= n;
+    while (o < -half) o += n;
+    return o;
+  }
+
+  function shortestTarget(from, to, n) {
+    let d = ((to - from) % n + n) % n;
+    if (d > n / 2) d -= n;
+    return from + d;
+  }
+
+  function easeOutCubic(t) {
+    return 1 - (1 - t) ** 3;
+  }
+
+  function applyAlbumTransforms(pos) {
     const fan = document.getElementById("album-fan");
     const dots = document.getElementById("album-dots");
-    const n = PHOTO_IDS.length;
+    const n = albumCount();
+    const idx = ((Math.round(pos) % n) + n) % n;
     [...fan.children].forEach((btn, i) => {
-      const t = fanTransform(i - albumIndex, n);
-      btn.style.transform = t.transform;
-      btn.style.opacity = String(t.opacity);
-      btn.style.zIndex = String(t.z);
-      btn.style.boxShadow = i === albumIndex ? "0 20px 25px -5px rgba(0,0,0,0.15)" : "";
+      const o = wrapDelta(i - pos, n);
+      const abs = Math.abs(o);
+      const x = o * 50;
+      const z = -abs * 150;
+      const rot = o * 22;
+      const scale = 1 - Math.min(abs, 3) * 0.12;
+      const opacity = abs >= 2.55 ? 0 : abs <= 1 ? 1 - abs * 0.16 : Math.max(0, 0.84 - (abs - 1) * 0.52);
+      btn.style.transform = `translate3d(${x}%, 0, ${z}px) rotateY(${rot}deg) scale(${scale})`;
+      btn.style.opacity = String(opacity);
+      btn.style.zIndex = String(Math.round(120 - abs * 20));
+      btn.style.boxShadow = abs < 0.35 ? "0 22px 28px -8px rgba(0,0,0,0.22)" : "";
     });
     [...dots.children].forEach((dot, i) => {
-      dot.classList.toggle("is-active", i === albumIndex);
+      dot.classList.toggle("is-active", i === idx);
     });
+  }
+
+  function albumIndex() {
+    const n = albumCount();
+    return ((Math.round(albumPos) % n) + n) % n;
+  }
+
+  function normalizeAlbumPos() {
+    const n = albumCount();
+    albumPos = ((albumPos % n) + n) % n;
+  }
+
+  function stopAlbumAnim() {
+    if (albumRaf) {
+      cancelAnimationFrame(albumRaf);
+      albumRaf = 0;
+    }
+    albumAnim = null;
+    albumAnimDone = null;
+  }
+
+  function tickAlbum(now) {
+    if (!albumAnim) {
+      albumRaf = 0;
+      return;
+    }
+    const t = Math.min(1, (now - albumAnim.start) / albumAnim.dur);
+    albumPos = albumAnim.from + (albumAnim.to - albumAnim.from) * easeOutCubic(t);
+    applyAlbumTransforms(albumPos);
+    if (t < 1) {
+      albumRaf = requestAnimationFrame(tickAlbum);
+      return;
+    }
+    albumPos = albumAnim.to;
+    normalizeAlbumPos();
+    albumAnim = null;
+    albumRaf = 0;
+    applyAlbumTransforms(albumPos);
+    if (albumAnimDone) {
+      const done = albumAnimDone;
+      albumAnimDone = null;
+      done();
+    }
+  }
+
+  let albumAnimDone = null;
+
+  function animateAlbumTo(target, dur, onDone) {
+    stopAlbumAnim();
+    albumAnimDone = onDone || null;
+    const dist = Math.abs(target - albumPos);
+    const ms = Math.max(280, Math.min(dur, 280 + dist * 420));
+    albumAnim = { from: albumPos, to: target, start: performance.now(), dur: ms };
+    albumRaf = requestAnimationFrame(tickAlbum);
+  }
+
+  function goToAlbum(next, { user = false } = {}) {
+    const n = albumCount();
+    const idx = ((next % n) + n) % n;
+    const target = shortestTarget(albumPos, idx, n);
+    if (Math.abs(target - albumPos) < 0.001) return;
+    stopAlbumAutoplay();
+    animateAlbumTo(target, ALBUM_DURATION, user ? startAlbumAutoplay : null);
   }
 
   function renderAlbum() {
@@ -161,14 +240,16 @@
         img.src = PHOTOS_CARD[i];
         img.alt = `Wedding photo ${i + 1}`;
         img.decoding = "async";
-        img.loading = i === 0 ? "eager" : "lazy";
+        img.draggable = false;
+        img.loading = i <= 2 ? "eager" : "lazy";
         btn.appendChild(img);
-        btn.addEventListener("click", () => {
-          if (i === albumIndex) openLightbox(i);
-          else {
-            albumIndex = i;
-            applyAlbumTransforms();
+        btn.addEventListener("click", (e) => {
+          if (albumDidDrag) {
+            e.preventDefault();
+            return;
           }
+          if (i === albumIndex()) openLightbox(i);
+          else goToAlbum(i, { user: true });
         });
         fan.appendChild(btn);
 
@@ -176,20 +257,48 @@
         dot.type = "button";
         dot.className = "album-dot";
         dot.setAttribute("aria-label", `Go to photo ${i + 1}`);
-        dot.addEventListener("click", () => {
-          albumIndex = i;
-          applyAlbumTransforms();
-        });
+        dot.addEventListener("click", () => goToAlbum(i, { user: true }));
         dots.appendChild(dot);
       });
     }
-    applyAlbumTransforms();
+    applyAlbumTransforms(albumPos);
   }
 
-  function stepAlbum(dir) {
-    albumIndex = (albumIndex + dir + PHOTO_IDS.length) % PHOTO_IDS.length;
-    applyAlbumTransforms();
+  function stepAlbum(dir, user = false) {
+    stopAlbumAutoplay();
+    animateAlbumTo(albumPos + dir, ALBUM_DURATION, user ? startAlbumAutoplay : null);
   }
+
+  function stopAlbumAutoplay() {
+    if (albumTimer) {
+      window.clearTimeout(albumTimer);
+      albumTimer = null;
+    }
+  }
+
+  function overlayOpen() {
+    return !overlay.hidden && !overlay.classList.contains("is-leaving");
+  }
+
+  function lightboxOpen() {
+    return Boolean(lightbox && lightbox.open);
+  }
+
+  function albumCanPlay() {
+    return !albumDragging && !lightboxOpen() && !document.hidden && !overlayOpen();
+  }
+
+  function startAlbumAutoplay(delay) {
+    stopAlbumAutoplay();
+    if (!albumCanPlay()) return;
+    albumTimer = window.setTimeout(() => {
+      albumTimer = null;
+      if (!albumCanPlay()) return;
+      animateAlbumTo(albumPos + 1, ALBUM_DURATION, () => startAlbumAutoplay());
+    }, delay == null ? ALBUM_INTERVAL : delay);
+  }
+
+  let albumDidDrag = false;
 
   let lbIndex = 0;
   const lightbox = document.getElementById("lightbox");
@@ -224,6 +333,7 @@
   function openLightbox(i) {
     lbIndex = i;
     renderLb();
+    stopAlbumAutoplay();
     lightbox.showModal();
     prefetchNeighbor(lbIndex);
   }
@@ -295,7 +405,8 @@
   }
 
   spawnHearts();
-  buildCalendar();
+  buildCalendar("calendar-grid-groom", 24);
+  buildCalendar("calendar-grid-bride", 25);
   renderAlbum();
   buildThumbs();
   renderWishes();
@@ -303,6 +414,7 @@
   if (alreadyOpen) {
     overlay.hidden = true;
     playMusic();
+    startAlbumAutoplay();
   }
 
   openBtn.addEventListener("click", openInvite);
@@ -311,25 +423,110 @@
     else pauseMusic();
   });
 
-  document.getElementById("album-prev").addEventListener("click", () => stepAlbum(-1));
-  document.getElementById("album-next").addEventListener("click", () => stepAlbum(1));
+  document.getElementById("album-prev").addEventListener("click", () => stepAlbum(-1, true));
+  document.getElementById("album-next").addEventListener("click", () => stepAlbum(1, true));
   document.getElementById("lb-close").addEventListener("click", () => lightbox.close());
   document.getElementById("lightbox").addEventListener("click", (e) => {
     if (e.target.id === "lightbox") e.target.close();
   });
+  lightbox.addEventListener("close", startAlbumAutoplay);
 
   {
     const stage = document.querySelector(".album-stage");
-    let x0 = null;
-    stage.addEventListener("pointerdown", (e) => { x0 = e.clientX; });
-    stage.addEventListener("pointerup", (e) => {
-      if (x0 == null) return;
-      const dx = e.clientX - x0;
-      x0 = null;
-      if (dx > 40) stepAlbum(-1);
-      else if (dx < -40) stepAlbum(1);
-    });
+    let startX = 0;
+    let startY = 0;
+    let startPos = 0;
+    let lastX = 0;
+    let lastT = 0;
+    let vel = 0;
+    let pid = null;
+
+    function unitWidth() {
+      return Math.max(160, stage.clientWidth * 0.42);
+    }
+
+    function onDown(e) {
+      if (e.pointerType === "mouse" && e.button !== 0) return;
+      stopAlbumAnim();
+      stopAlbumAutoplay();
+      albumLock = null;
+      albumDragging = false;
+      albumDidDrag = false;
+      pid = e.pointerId;
+      startX = lastX = e.clientX;
+      startY = e.clientY;
+      startPos = albumPos;
+      lastT = performance.now();
+      vel = 0;
+    }
+
+    function onMove(e) {
+      if (pid == null || e.pointerId !== pid) return;
+      const dx = e.clientX - startX;
+      const dy = e.clientY - startY;
+      if (!albumLock) {
+        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
+        albumLock = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
+        if (albumLock === "x") {
+          albumDragging = true;
+          albumDidDrag = true;
+          stage.classList.add("is-dragging");
+          try { stage.setPointerCapture(pid); } catch {}
+        }
+      }
+      if (albumLock !== "x") return;
+      e.preventDefault();
+      const now = performance.now();
+      const dt = now - lastT;
+      if (dt > 0) vel = (e.clientX - lastX) / dt;
+      lastX = e.clientX;
+      lastT = now;
+      albumPos = startPos - dx / unitWidth();
+      applyAlbumTransforms(albumPos);
+    }
+
+    function settle() {
+      const n = albumCount();
+      let target = albumPos - vel * 220 / unitWidth();
+      const nearest = Math.round(albumPos);
+      if (Math.abs(vel) > 0.35 && nearest === Math.round(target)) {
+        target = nearest + (vel > 0 ? -1 : 1);
+      } else {
+        target = Math.round(target);
+      }
+      if (target > albumPos + n / 2) target -= n;
+      if (target < albumPos - n / 2) target += n;
+      albumDragging = false;
+      pid = null;
+      albumLock = null;
+      stage.classList.remove("is-dragging");
+      animateAlbumTo(target, ALBUM_DURATION, startAlbumAutoplay);
+    }
+
+    function onUp(e) {
+      if (pid == null || e.pointerId !== pid) return;
+      if (albumLock === "x") settle();
+      else {
+        pid = null;
+        albumLock = null;
+        albumDragging = false;
+        stage.classList.remove("is-dragging");
+        startAlbumAutoplay();
+      }
+    }
+
+    stage.addEventListener("pointerdown", onDown);
+    stage.addEventListener("pointermove", onMove, { passive: false });
+    stage.addEventListener("pointerup", onUp);
+    stage.addEventListener("pointercancel", onUp);
   }
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) stopAlbumAutoplay();
+    else startAlbumAutoplay();
+  });
+
+  startAlbumAutoplay();
   document.getElementById("lb-prev").addEventListener("click", () => {
     lbIndex = (lbIndex - 1 + PHOTO_IDS.length) % PHOTO_IDS.length;
     renderLb();
