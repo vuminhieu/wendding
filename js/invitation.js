@@ -3,18 +3,7 @@
   const PHOTOS_CARD = PHOTO_IDS.map((id) => `assets/photos/card/${id}.webp`);
   const PHOTOS_FULL = PHOTO_IDS.map((id) => `assets/photos/full/${id}.webp`);
 
-  const WISH_SEED = [
-    ["Duy Khang", "Chúc mừng ngày vui của hai bạn, trăm năm hạnh phúc bền lâu!"],
-    ["Lan Chi", "Đẹp đôi quá! Chúc hai bạn sống bên nhau đầu bạc răng long."],
-    ["Tuấn Anh", "Mừng hạnh phúc hai bạn! Chúc gia đình nhỏ luôn đầy ắp tiếng cười."],
-    ["Khánh Vy", "Chúc cô dâu chú rể luôn giữ được nụ cười này mãi mãi nhé!"],
-    ["Gia Bảo", "Nhìn thiệp là thấy tình yêu rồi. Chúc hai bạn trăm năm viên mãn!"],
-    ["Hải Yến", "Chúc đám cưới thật trọn vẹn và ấm áp. Hạnh phúc nhé hai bạn!"],
-    ["Minh Đức", "Cuối cùng cũng tới ngày trọng đại, chúc mừng cặp đôi xứng lứa vừa đôi!"],
-    ["Thu Hà", "Chúc hai bạn mãi mãi yêu thương và bên nhau trọn đời!"],
-    ["Thuỳ Linh", "Mẫu thiệp đẹp quá, tông đỏ đô sang trọng ghê. Chúc mừng hai bạn!"],
-    ["Ngọc Trâm", "Chúc hai bạn trăm năm hạnh phúc, sớm sinh quý tử nhé!"]
-  ];
+  const WISH_DB_URL = "https://wedding-minhieu-phuonganh-default-rtdb.asia-southeast1.firebasedatabase.app";
 
   const AI_WISHES = [
     "Chúc hai bạn trăm năm hạnh phúc, sớm sum vầy bên nhau.",
@@ -475,22 +464,48 @@
     });
   }
 
-  const WISH_KEY = "invitation-wishes";
-
-  function loadWishes() {
-    try {
-      const raw = localStorage.getItem(WISH_KEY);
-      if (raw) return JSON.parse(raw);
-    } catch {}
-    return WISH_SEED.map(([name, text]) => ({
-      name,
-      text,
-      time: "12:30:49 26/7/2026"
-    }));
+  function wishDbRoot() {
+    return String(WISH_DB_URL || "").replace(/\/+$/, "");
   }
 
-  function saveWishes(list) {
-    localStorage.setItem(WISH_KEY, JSON.stringify(list));
+  function wishesFromSnapshot(data) {
+    if (!data || typeof data !== "object") return [];
+    return Object.keys(data)
+      .map((id) => {
+        const w = data[id];
+        if (!w || typeof w !== "object") return null;
+        const name = String(w.name || "").trim();
+        const text = String(w.text || "").trim();
+        if (!name || !text) return null;
+        return {
+          id,
+          name,
+          text,
+          time: String(w.time || ""),
+          at: Number(w.at) || 0
+        };
+      })
+      .filter(Boolean)
+      .sort((a, b) => b.at - a.at);
+  }
+
+  async function loadWishes() {
+    const root = wishDbRoot();
+    if (!root) return [];
+    const res = await fetch(`${root}/wishes.json`);
+    if (!res.ok) throw new Error("wish-load");
+    return wishesFromSnapshot(await res.json());
+  }
+
+  async function postWish(wish) {
+    const root = wishDbRoot();
+    if (!root) throw new Error("wish-config");
+    const res = await fetch(`${root}/wishes.json`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(wish)
+    });
+    if (!res.ok) throw new Error("wish-save");
   }
 
   function formatNow() {
@@ -499,10 +514,11 @@
     return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())} ${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()}`;
   }
 
-  function renderWishes() {
+  async function renderWishes() {
     const root = document.getElementById("wishes");
-    const list = loadWishes();
-    root.innerHTML = list.map((w) => `
+    try {
+      const list = await loadWishes();
+      root.innerHTML = list.map((w) => `
       <article class="wish">
         <div class="wish-head">
           <span class="wish-name">${escapeHtml(w.name)}</span>
@@ -511,6 +527,9 @@
         <p>${escapeHtml(w.text)}</p>
       </article>
     `).join("");
+    } catch {
+      root.innerHTML = "";
+    }
   }
 
   function escapeHtml(s) {
@@ -696,17 +715,26 @@
     ta.value = AI_WISHES[Math.floor(Math.random() * AI_WISHES.length)];
   });
 
-  document.getElementById("wish-form").addEventListener("submit", (e) => {
+  document.getElementById("wish-form").addEventListener("submit", async (e) => {
     e.preventDefault();
     const name = document.getElementById("wish-name").value.trim();
     const text = document.getElementById("wish-msg").value.trim();
     if (!name || !text) return;
-    const list = loadWishes();
-    list.unshift({ name, text, time: formatNow() });
-    saveWishes(list);
-    renderWishes();
-    e.target.reset();
-    showToast("Đã gửi lời chúc");
+    const submitBtn = e.target.querySelector(".submit");
+    if (submitBtn) submitBtn.disabled = true;
+    try {
+      await postWish({ name, text, time: formatNow(), at: Date.now() });
+      e.target.reset();
+      applyGuestName(sanitizeGuestName(params.get("to")));
+      await renderWishes();
+      showToast("Đã gửi lời chúc");
+    } catch (err) {
+      showToast(err && err.message === "wish-config"
+        ? "Chưa cấu hình sổ lưu bút"
+        : "Không gửi được, thử lại");
+    } finally {
+      if (submitBtn) submitBtn.disabled = false;
+    }
   });
 
   const rsvpDialog = document.getElementById("rsvp-dialog");
