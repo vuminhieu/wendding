@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600&family=Great+Vibes&family=Lora:wght@300;400;600&family=Ms+Madi&family=The+Nautigal:wght@400&family=Uchen&family=Viaoda+Libre&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
   <noscript><link href="https://fonts.googleapis.com/css2?family=Allura&family=Cormorant+Garamond:wght@600&family=Great+Vibes&family=Lora:wght@300;400;600&family=Ms+Madi&family=The+Nautigal:wght@400&family=Uchen&family=Viaoda+Libre&display=swap" rel="stylesheet"></noscript>
-  <link rel="stylesheet" href="css/invitation.css?v=wish-align5">
+  <link rel="stylesheet" href="css/invitation.css?v=open-env2">
   <link rel="preload" as="image" href="assets/photos/hero.webp">
   <link rel="preload" as="image" href="assets/photos/full/02.webp">
 </head>
@@ -22,31 +22,52 @@
     </div>
     <div class="hearts" id="hearts" aria-hidden="true"></div>
     <div class="overlay-card-wrap">
-      <div class="seal" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-      </div>
-      <div class="overlay-shadow">
-        <div class="overlay-sheet"></div>
-        <img class="overlay-flower overlay-flower--tl" src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
-        <img class="overlay-flower overlay-flower--br" src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
-        <div class="overlay-body">
-          <h1 class="overlay-names">
-            <span><span class="name-cap">M</span>inh Hiếu</span>
-            <span class="overlay-amp">&amp;</span>
-            <span>Phương <span class="name-cap">A</span>nh</span>
-          </h1>
-          <div class="ornament">
-            <div class="ornament-line ornament-line--l"></div>
-            <span class="ornament-mark">❦</span>
-            <div class="ornament-line ornament-line--r"></div>
+      <div class="env-stage">
+        <div class="env-burst" aria-hidden="true">
+          <span style="--dx:-28px;--dy:-36px;--delay:0ms"></span>
+          <span style="--dx:32px;--dy:-30px;--delay:40ms"></span>
+          <span style="--dx:-40px;--dy:-8px;--delay:70ms"></span>
+          <span style="--dx:38px;--dy:-4px;--delay:90ms"></span>
+          <span style="--dx:-18px;--dy:-48px;--delay:110ms"></span>
+          <span style="--dx:16px;--dy:-52px;--delay:130ms"></span>
+          <span style="--dx:0px;--dy:-58px;--delay:50ms"></span>
+          <span style="--dx:-8px;--dy:-22px;--delay:160ms"></span>
+        </div>
+        <div class="overlay-shadow env-letter">
+          <div class="overlay-sheet"></div>
+          <span class="overlay-flower overlay-flower--tl">
+            <img src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
+          </span>
+          <span class="overlay-flower overlay-flower--br">
+            <img src="assets/theme/flower2-decoration.webp" alt="" aria-hidden="true">
+          </span>
+          <div class="overlay-body">
+            <h1 class="overlay-names">
+              <span><span class="name-cap">M</span>inh Hiếu</span>
+              <span class="overlay-amp">&amp;</span>
+              <span>Phương <span class="name-cap">A</span>nh</span>
+            </h1>
+            <div class="ornament">
+              <div class="ornament-line ornament-line--l"></div>
+              <span class="ornament-mark">❦</span>
+              <div class="ornament-line ornament-line--r"></div>
+            </div>
+            <p class="overlay-date">25 tháng 10, 2026</p>
+            <p class="overlay-invite">Thân Mời</p>
+            <p class="overlay-guest" id="overlay-guest" hidden></p>
+            <button type="button" class="open-btn" id="open-invite">
+              <span>Mở thiệp</span>
+              <span class="shine" aria-hidden="true"></span>
+            </button>
           </div>
-          <p class="overlay-date">25 tháng 10, 2026</p>
-          <p class="overlay-invite">Thân Mời</p>
-          <p class="overlay-guest" id="overlay-guest" hidden></p>
-          <button type="button" class="open-btn" id="open-invite">
-            <span>Mở thiệp</span>
-            <span class="shine" aria-hidden="true"></span>
-          </button>
+        </div>
+        <div class="env-pocket" aria-hidden="true"></div>
+        <div class="env-flap" aria-hidden="true">
+          <div class="env-flap-front"></div>
+          <div class="env-flap-back"></div>
+        </div>
+        <div class="seal" aria-hidden="true">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
         </div>
       </div>
     </div>

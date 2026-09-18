@@ -1832,7 +1832,7 @@ a {
   justify-content: center;
   overflow: hidden;
   background: #511419;
-  transition: opacity 1.6s ease, transform 1.6s ease;
+  transition: opacity 0.9s ease 1.45s, transform 0.9s ease 1.45s;
 }
 
 .overlay-bg {
@@ -1850,6 +1850,7 @@ a {
   object-position: 48% 42%;
   transform: scale(1.03);
   filter: blur(2.5px) saturate(1.06) brightness(1.02);
+  transition: transform 1.6s ease, filter 1.6s ease;
 }
 
 .overlay-bg::after {
@@ -1863,7 +1864,7 @@ a {
 
 .overlay.is-leaving {
   opacity: 0;
-  transform: translateY(-12px);
+  transform: scale(1.015);
   pointer-events: none;
 }
 
@@ -1907,15 +1908,120 @@ a {
   position: relative;
   z-index: 10;
   width: 310px;
+  --env-flap-h: 96px;
   overflow: visible;
   animation: paperBob 5.8s ease-in-out infinite;
   will-change: transform;
 }
 
+.env-stage {
+  position: relative;
+  perspective: 1600px;
+}
+
+.env-pocket {
+  position: absolute;
+  z-index: 0;
+  inset: 14px -12px -22px;
+  border-radius: 12px;
+  pointer-events: none;
+  background:
+    linear-gradient(160deg, rgba(255, 214, 170, 0.12) 0%, transparent 28%),
+    linear-gradient(180deg, #6e1a20 0%, #511419 46%, #2e0a0e 100%);
+  box-shadow:
+    0 28px 48px rgba(0, 0, 0, 0.38),
+    inset 0 1px 0 rgba(255, 250, 243, 0.16);
+}
+
+.env-pocket::after {
+  content: "";
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 14px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
+  filter: blur(8px);
+}
+
+.env-letter {
+  position: relative;
+  z-index: 10;
+  transform-origin: center 70%;
+  will-change: transform, opacity;
+}
+
+.env-flap {
+  position: absolute;
+  left: -1px;
+  right: -1px;
+  top: -1px;
+  height: var(--env-flap-h);
+  z-index: 22;
+  pointer-events: none;
+  transform-origin: top center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.env-flap-front,
+.env-flap-back {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+.env-flap-front {
+  background:
+    linear-gradient(180deg, rgba(201, 162, 74, 0.28) 0%, transparent 18%),
+    linear-gradient(180deg, #7a2228 0%, #511419 58%, #3a0d11 100%);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+}
+
+.env-flap-front::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  clip-path: polygon(6% 0, 94% 0, 50% 88%);
+  border-bottom: 1px solid rgba(201, 162, 74, 0.28);
+  background: linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.18) 100%);
+}
+
+.env-flap-back {
+  transform: rotateX(180deg);
+  background: linear-gradient(180deg, #f6efe4 0%, #e8dccb 100%);
+  box-shadow: inset 0 8px 16px rgba(81, 20, 25, 0.08);
+}
+
+.env-burst {
+  position: absolute;
+  left: 50%;
+  top: var(--env-flap-h);
+  z-index: 32;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.env-burst span {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #f3e8de, #c9a24a 55%, #8a6420);
+  opacity: 0;
+  box-shadow: 0 0 8px rgba(201, 162, 74, 0.7);
+}
+
 .seal {
   position: absolute;
   left: 50%;
-  top: 50px;
+  top: var(--env-flap-h);
   z-index: 30;
   width: 56px;
   height: 56px;
@@ -1960,33 +2066,45 @@ a {
   pointer-events: none;
   position: absolute;
   z-index: 12;
+  display: block;
   height: 210px;
   width: auto;
   max-width: none;
   opacity: 0.88;
+  transform: var(--of-base);
   will-change: transform, opacity;
+}
+
+.overlay-flower img {
+  display: block;
+  height: 100%;
+  width: auto;
+  max-width: none;
+  animation: overlayFlowerBob 5.8s ease-in-out infinite;
+  will-change: transform;
 }
 
 .overlay-flower--tl {
   top: -12%;
   left: -28px;
   --of-base: translateX(-6%) rotate(25deg);
-  transform: var(--of-base);
-  animation: overlayFlowerBob 5.8s ease-in-out infinite;
 }
 
 .overlay-flower--br {
   bottom: -12%;
   right: -28px;
   --of-base: translateX(6%) scaleX(-1) rotate(-25deg);
-  transform: var(--of-base);
-  animation: overlayFlowerBob 6.2s ease-in-out infinite reverse;
+}
+
+.overlay-flower--br img {
+  animation-duration: 6.2s;
+  animation-direction: reverse;
 }
 
 .overlay-body {
   position: relative;
   z-index: 10;
-  padding: 112px 24px 56px;
+  padding: calc(var(--env-flap-h) + 28px) 24px 56px;
   text-align: center;
 }
 
@@ -2461,16 +2579,84 @@ a {
 @keyframes overlayFlowerBob {
   0%,
   100% {
-    transform: var(--of-base) translateY(0);
+    transform: translateY(0);
   }
   50% {
-    transform: var(--of-base) translateY(-22px);
+    transform: translateY(-22px);
   }
 }
 
 @keyframes overlayFlowerLift {
   to {
     transform: var(--of-base) translateY(-42px);
+    opacity: 0;
+  }
+}
+
+@keyframes envSealBreak {
+  0% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  38% {
+    transform: translate(-50%, -58%) scale(1.12) rotate(-8deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -168%) scale(0.72) rotate(-22deg);
+    opacity: 0;
+  }
+}
+
+@keyframes envFlapOpen {
+  0% {
+    transform: rotateX(0deg);
+    z-index: 22;
+  }
+  18% {
+    transform: rotateX(-16deg);
+  }
+  52% {
+    z-index: 22;
+  }
+  53% {
+    z-index: 6;
+  }
+  100% {
+    transform: rotateX(-168deg);
+    z-index: 6;
+  }
+}
+
+@keyframes envLetterRise {
+  0% {
+    transform: translate3d(0, 18px, 0) scale(0.985);
+  }
+  42% {
+    transform: translate3d(0, -18px, 0) scale(1.01);
+  }
+  100% {
+    transform: translate3d(0, -86px, 0) scale(1.035);
+  }
+}
+
+@keyframes envPocketSink {
+  to {
+    transform: translateY(28px) scale(0.96);
+    opacity: 0;
+  }
+}
+
+@keyframes envBurstPop {
+  0% {
+    transform: translate(0, 0) scale(0.4);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(0.2);
     opacity: 0;
   }
 }
@@ -2601,6 +2787,7 @@ a {
 @media (min-width: 640px) {
   .overlay-card-wrap {
     width: 340px;
+    --env-flap-h: 104px;
   }
 
   .gift-grid {
@@ -2907,10 +3094,11 @@ a {
 
   .overlay-card-wrap {
     width: 520px;
+    --env-flap-h: 132px;
   }
 
   .overlay-body {
-    padding: 96px 24px 32px;
+    padding: calc(var(--env-flap-h) + 18px) 24px 32px;
   }
 
   .overlay-names {
@@ -2953,6 +3141,7 @@ a {
 
   .overlay-card-wrap {
     width: 600px;
+    --env-flap-h: 148px;
   }
 }
 
@@ -2968,16 +3157,40 @@ a {
   z-index: 1;
 }
 
+body.is-opening .overlay-card-wrap {
+  animation: none;
+}
+
 body.is-opening .overlay-flower {
-  animation: overlayFlowerLift 1.6s ease forwards;
+  animation: overlayFlowerLift 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.08s forwards;
+}
+
+body.is-opening .overlay-flower img {
+  animation: none;
 }
 
 body.is-opening .seal {
-  animation: sealLift 1.6s ease forwards;
+  animation: envSealBreak 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+body.is-opening .env-flap {
+  animation: envFlapOpen 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.22s forwards;
+}
+
+body.is-opening .env-letter {
+  animation: envLetterRise 1.15s cubic-bezier(0.16, 1, 0.3, 1) 0.55s forwards;
+}
+
+body.is-opening .env-pocket {
+  animation: envPocketSink 0.85s ease 0.85s forwards;
+}
+
+body.is-opening .env-burst span {
+  animation: envBurstPop 0.7s ease-out var(--delay, 0ms) forwards;
 }
 
 body.is-opening .hearts .heart {
-  animation: overlayHeartLift 1.6s ease forwards;
+  animation: overlayHeartLift 1.1s ease forwards;
 }
 
 body.is-opening .hearts .heart svg,
@@ -2989,13 +3202,38 @@ body.is-opening .open-btn {
   animation: none;
   opacity: 0;
   transform: scale(0.96);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+body.is-opening .overlay-bg img {
+  transform: scale(1.08);
+  filter: blur(6px) saturate(1.08) brightness(1.08);
+  transition: transform 1.6s ease, filter 1.6s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
   .sparkle,
-  .music-btn.is-playing .music-disc {
+  .music-btn.is-playing .music-disc,
+  .overlay-card-wrap,
+  .env-flap,
+  .seal,
+  .overlay-flower,
+  .hearts .heart,
+  .hearts .heart svg,
+  .open-btn {
     animation: none !important;
+  }
+
+  .overlay {
+    transition: opacity 0.2s ease;
+  }
+
+  body.is-opening .env-letter,
+  body.is-opening .env-pocket,
+  body.is-opening .env-burst span,
+  body.is-opening .overlay-bg img {
+    animation: none !important;
+    transition: none !important;
   }
 
   .rsvp:hover,
@@ -3140,34 +3378,54 @@ html::before {
   transition: opacity 0.8s var(--ease-micro) 0.45s;
 }
 
-body.await-open #invitation,
-body.is-opening #invitation {
+body.await-open #invitation {
   opacity: 0;
 }
 
 body.await-open #invitation .header,
-body.is-opening #invitation .header {
-  opacity: 0;
-  transform: translateY(24px);
-}
-
 body.await-open #invitation .paper-wrap,
-body.is-opening #invitation .paper-wrap,
 body.await-open #invitation .section-bleed,
+body.await-open #invitation .guestbook-wrap {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+body.await-open #invitation .footer {
+  opacity: 0;
+}
+
+body.is-opening #invitation {
+  opacity: 1;
+  transition: opacity 0.9s var(--ease-micro) 1.2s;
+}
+
+body.is-opening #invitation .header {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.9s var(--ease-micro) 1.2s, transform 0.9s var(--ease-micro) 1.2s;
+}
+
+body.is-opening #invitation .paper-wrap {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.85s var(--ease-micro) 1.32s, transform 0.85s var(--ease-micro) 1.32s;
+}
+
 body.is-opening #invitation .section-bleed {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.85s var(--ease-micro) 1.4s, transform 0.85s var(--ease-micro) 1.4s;
 }
 
-body.await-open #invitation .guestbook-wrap,
 body.is-opening #invitation .guestbook-wrap {
-  opacity: 0;
-  transform: translateY(24px);
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.85s var(--ease-micro) 1.5s, transform 0.85s var(--ease-micro) 1.5s;
 }
 
-body.await-open #invitation .footer,
 body.is-opening #invitation .footer {
-  opacity: 0;
+  opacity: 1;
+  transition: opacity 0.8s var(--ease-micro) 1.6s;
 }
 
 body.is-opened #invitation {

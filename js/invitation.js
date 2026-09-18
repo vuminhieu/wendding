@@ -207,9 +207,9 @@
       done();
     } else {
       overlay.addEventListener("transitionend", (e) => {
-        if (e.target === overlay) done();
+        if (e.target === overlay && e.propertyName === "opacity") done();
       }, { once: true });
-      setTimeout(done, 1700);
+      setTimeout(done, 2500);
     }
 
     const url = new URL(location.href);
