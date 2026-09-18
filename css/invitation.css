@@ -1971,23 +1971,23 @@ a {
   inset: 0;
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  clip-path: polygon(0 0, 100% 0, 100% 12%, 50% 100%, 0 12%);
 }
 
 .env-flap-front {
   background:
-    linear-gradient(180deg, rgba(201, 162, 74, 0.28) 0%, transparent 18%),
-    linear-gradient(180deg, #7a2228 0%, #511419 58%, #3a0d11 100%);
-  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.22);
+    linear-gradient(180deg, rgba(201, 162, 74, 0.38) 0%, transparent 22%),
+    linear-gradient(180deg, #8a2a32 0%, #6e1a20 48%, #511419 100%);
+  box-shadow: 0 10px 18px rgba(0, 0, 0, 0.2);
 }
 
 .env-flap-front::before {
   content: "";
   position: absolute;
   inset: 0;
-  clip-path: polygon(6% 0, 94% 0, 50% 88%);
-  border-bottom: 1px solid rgba(201, 162, 74, 0.28);
-  background: linear-gradient(180deg, transparent 62%, rgba(0, 0, 0, 0.18) 100%);
+  clip-path: polygon(6% 0, 94% 0, 94% 14%, 50% 88%, 6% 14%);
+  background: linear-gradient(180deg, rgba(255, 250, 243, 0.1) 0%, transparent 36%);
+  box-shadow: inset 0 -1px 0 rgba(201, 162, 74, 0.32);
 }
 
 .env-flap-back {
@@ -2065,7 +2065,7 @@ a {
 .overlay-flower {
   pointer-events: none;
   position: absolute;
-  z-index: 12;
+  z-index: 34;
   display: block;
   height: 210px;
   width: auto;
@@ -2614,7 +2614,7 @@ a {
     z-index: 22;
   }
   18% {
-    transform: rotateX(-16deg);
+    transform: rotateX(26deg);
   }
   52% {
     z-index: 22;
@@ -2623,7 +2623,7 @@ a {
     z-index: 6;
   }
   100% {
-    transform: rotateX(-168deg);
+    transform: rotateX(178deg);
     z-index: 6;
   }
 }
