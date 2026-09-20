@@ -202,14 +202,15 @@ a {
   position: relative;
   z-index: 10;
   margin-top: 96px;
-  width: 82%;
-  max-width: 330px;
+  width: 88%;
+  max-width: 352px;
   animation: paperBob 5.8s ease-in-out infinite;
   will-change: transform;
 }
 
 .hero-envelope-inner {
   position: relative;
+  width: 100%;
   aspect-ratio: 333 / 384;
 }
 
@@ -2828,7 +2829,7 @@ a {
 
   .hero-envelope {
     margin-top: 112px;
-    max-width: 420px;
+    max-width: 448px;
   }
 
   .hero-names {
