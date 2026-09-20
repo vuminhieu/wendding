@@ -283,6 +283,7 @@
       const opacity = abs >= 2.55 ? 0 : abs <= 1 ? 1 - abs * 0.16 : Math.max(0, 0.84 - (abs - 1) * 0.52);
       btn.style.transform = `translate3d(${x}%, 0, ${z}px) rotateY(${rot}deg) scale(${scale})`;
       btn.style.opacity = String(opacity);
+      btn.style.pointerEvents = opacity <= 0 ? "none" : "";
       btn.style.zIndex = String(Math.round(120 - abs * 20));
       btn.style.boxShadow = abs < 0.35 ? "0 22px 28px -8px rgba(0,0,0,0.22)" : "";
     });
@@ -615,6 +616,25 @@
       return Math.max(160, stage.clientWidth * 0.42);
     }
 
+    const movePassive = { passive: true };
+    const moveBlocking = { passive: false };
+    let moveBlocksScroll = false;
+
+    function bindAlbumMove(blockScroll) {
+      if (moveBlocksScroll === blockScroll) return;
+      stage.removeEventListener("pointermove", onMove, moveBlocksScroll ? moveBlocking : movePassive);
+      moveBlocksScroll = blockScroll;
+      stage.addEventListener("pointermove", onMove, blockScroll ? moveBlocking : movePassive);
+    }
+
+    function endAlbumPointer() {
+      albumDragging = false;
+      pid = null;
+      albumLock = null;
+      stage.classList.remove("is-dragging");
+      bindAlbumMove(false);
+    }
+
     function onDown(e) {
       if (e.pointerType === "mouse" && e.button !== 0) return;
       stopAlbumAnim();
@@ -628,24 +648,31 @@
       startPos = albumPos;
       lastT = performance.now();
       vel = 0;
+      bindAlbumMove(false);
     }
 
     function onMove(e) {
       if (pid == null || e.pointerId !== pid) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
+      const ax = Math.abs(dx);
+      const ay = Math.abs(dy);
+      const alreadyBlocking = moveBlocksScroll;
       if (!albumLock) {
-        if (Math.abs(dx) < 8 && Math.abs(dy) < 8) return;
-        albumLock = Math.abs(dx) > Math.abs(dy) ? "x" : "y";
-        if (albumLock === "x") {
+        if (ax > 12 && ax > ay * 1.5) {
+          albumLock = "x";
           albumDragging = true;
           albumDidDrag = true;
           stage.classList.add("is-dragging");
           try { stage.setPointerCapture(pid); } catch {}
+          bindAlbumMove(true);
+        } else if (ay >= 8) {
+          albumLock = "y";
         }
+        if (albumLock !== "x") return;
       }
       if (albumLock !== "x") return;
-      e.preventDefault();
+      if (alreadyBlocking) e.preventDefault();
       const now = performance.now();
       const dt = now - lastT;
       if (dt > 0) vel = (e.clientX - lastX) / dt;
@@ -666,10 +693,7 @@
       }
       if (target > albumPos + n / 2) target -= n;
       if (target < albumPos - n / 2) target += n;
-      albumDragging = false;
-      pid = null;
-      albumLock = null;
-      stage.classList.remove("is-dragging");
+      endAlbumPointer();
       animateAlbumTo(target, ALBUM_DURATION, startAlbumAutoplay);
     }
 
@@ -677,16 +701,13 @@
       if (pid == null || e.pointerId !== pid) return;
       if (albumLock === "x") settle();
       else {
-        pid = null;
-        albumLock = null;
-        albumDragging = false;
-        stage.classList.remove("is-dragging");
+        endAlbumPointer();
         startAlbumAutoplay();
       }
     }
 
     stage.addEventListener("pointerdown", onDown);
-    stage.addEventListener("pointermove", onMove, { passive: false });
+    stage.addEventListener("pointermove", onMove, movePassive);
     stage.addEventListener("pointerup", onUp);
     stage.addEventListener("pointercancel", onUp);
   }
