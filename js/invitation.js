@@ -764,13 +764,24 @@
   });
 
   const rsvpDialog = document.getElementById("rsvp-dialog");
-  document.getElementById("rsvp-open").addEventListener("click", () => rsvpDialog.showModal());
+  let rsvpSide = "groom";
+  document.querySelectorAll(".rsvp[data-side]").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      rsvpSide = btn.dataset.side === "bride" ? "bride" : "groom";
+      rsvpDialog.showModal();
+    });
+  });
   document.getElementById("rsvp-cancel").addEventListener("click", () => rsvpDialog.close());
   document.getElementById("rsvp-form").addEventListener("submit", (e) => {
     e.preventDefault();
     const name = document.getElementById("rsvp-name").value.trim();
     const status = document.getElementById("rsvp-status").value;
-    localStorage.setItem("invitation-rsvp", JSON.stringify({ name, status, at: Date.now() }));
+    localStorage.setItem("invitation-rsvp", JSON.stringify({
+      name,
+      status,
+      side: rsvpSide,
+      at: Date.now()
+    }));
     rsvpDialog.close();
     showToast(status === "yes" ? "Cảm ơn bạn đã xác nhận tham dự" : "Đã ghi nhận phản hồi");
   });
